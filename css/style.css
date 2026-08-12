@@ -250,24 +250,18 @@ body {
 .hero-ascii {
   flex: 0 0 auto;
   font-family: var(--mono);
-  font-size: clamp(2.2px, 0.24vw, 3.6px);
-  line-height: 1;
+  font-size: clamp(2.2px, 1.24vw, 5.6px);
+  line-height: 1.1;
   color: var(--accent);
-  opacity: 0.5;
+  opacity: 1;
   white-space: pre;
   user-select: none;
   pointer-events: none;
 }
-.hero-ascii.reveal.visible {
-  opacity: 0.5;
-}
 @media (max-width: 900px) {
   .hero-inner { flex-direction: column; gap: 2rem; }
   .hero-content { max-width: 100%; }
-  .hero-ascii { font-size: clamp(2.4px, 0.5vw, 3.6px); }
-}
-@media (max-width: 480px) {
-  .hero-ascii { display: none; }
+  .hero-ascii { font-size: clamp(2.4px, 1.5vw, 3.6px); }
 }
 .hero-scroll {
   position: absolute;
