@@ -238,6 +238,24 @@ body {
 }
 .hero-socials a:hover { color: var(--accent); transform: translateY(-3px); }
 .hero-socials svg { width: 22px; height: 22px; }
+.hero-ascii {
+  margin-top: 3rem;
+  font-family: var(--mono);
+  font-size: clamp(0.9px, 0.16vw, 1.7px);
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.4;
+  white-space: pre;
+  user-select: none;
+  pointer-events: none;
+  text-align: center;
+}
+.hero-ascii.reveal.visible {
+  opacity: 0.4;
+}
+@media (max-width: 480px) {
+  .hero-ascii { display: none; }
+}
 .hero-scroll {
   position: absolute;
   bottom: 2rem;

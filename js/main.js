@@ -1,3 +1,10 @@
+/* ─── HERO ASCII ART ──────────────────────────────────────── */
+const heroAscii = document.getElementById('hero-ascii');
+fetch('ascii-art.txt')
+  .then(res => res.ok ? res.text() : Promise.reject(res.status))
+  .then(text => { heroAscii.textContent = text; })
+  .catch(() => { heroAscii.style.display = 'none'; });
+
 /* ─── NAVBAR SCROLL ────────────────────────────────────────── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
