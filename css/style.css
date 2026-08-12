@@ -211,6 +211,8 @@ body {
   color: var(--text-dim);
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
+  line-height: 1.2;
+  min-height: 1.2em;
 }
 .hero-desc {
   max-width: 560px;
