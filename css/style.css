@@ -184,11 +184,20 @@ body {
   background-size: 60px 60px;
   mask-image: radial-gradient(ellipse at center, black 20%, transparent 75%);
 }
-.hero-content {
-  max-width: 800px;
+.hero-inner {
+  max-width: 1180px;
   margin: 0 auto;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.hero-content {
+  max-width: 640px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 .hero-greeting {
   font-family: var(--mono);
@@ -239,19 +248,23 @@ body {
 .hero-socials a:hover { color: var(--accent); transform: translateY(-3px); }
 .hero-socials svg { width: 22px; height: 22px; }
 .hero-ascii {
-  margin-top: 3rem;
+  flex: 0 0 auto;
   font-family: var(--mono);
-  font-size: clamp(0.9px, 0.16vw, 1.7px);
+  font-size: clamp(2.2px, 0.24vw, 3.6px);
   line-height: 1;
   color: var(--accent);
-  opacity: 0.4;
+  opacity: 0.5;
   white-space: pre;
   user-select: none;
   pointer-events: none;
-  text-align: center;
 }
 .hero-ascii.reveal.visible {
-  opacity: 0.4;
+  opacity: 0.5;
+}
+@media (max-width: 900px) {
+  .hero-inner { flex-direction: column; gap: 2rem; }
+  .hero-content { max-width: 100%; }
+  .hero-ascii { font-size: clamp(2.4px, 0.5vw, 3.6px); }
 }
 @media (max-width: 480px) {
   .hero-ascii { display: none; }
