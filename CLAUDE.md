@@ -53,6 +53,11 @@ CLAUDE.md         — this file
 
 ## Changelog
 
+### 2026-08-12 — Post-exchange updates
+- Removed "currently on academic exchange" framing from the hero description (now just the 6+ years summary).
+- Updated About section to reflect the HUFS exchange as completed in 2026, not ongoing.
+- Updated contact phone number to +55 51 99581 6448 (Brazil), replacing the old +82 (South Korea) number.
+
 ### 2026-08-12 — v1.1 English/Portuguese i18n
 - Added EN/PT-BR language support via `js/i18n.js`, with a navbar toggle and auto-detection from browser locale (`localStorage` override on manual switch).
 - Tagged all translatable copy in `index.html` with `data-i18n` keys; hero typewriter titles now switch language too.

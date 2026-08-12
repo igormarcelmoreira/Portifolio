@@ -11,8 +11,8 @@ const translations = {
 
   'hero.greeting': { en: 'Hi, my name is', pt: 'Olá, meu nome é' },
   'hero.desc': {
-    en: '6+ years building mobile, web &amp; backend systems across healthcare, finance and energy sectors. Currently on academic exchange at <span class="accent-text">HUFS, South Korea</span>.',
-    pt: 'Mais de 6 anos construindo sistemas mobile, web e backend nos setores de saúde, finanças e energia. Atualmente em intercâmbio acadêmico na <span class="accent-text">HUFS, Coreia do Sul</span>.'
+    en: '6+ years building mobile, web &amp; backend systems across healthcare, finance and energy sectors.',
+    pt: 'Mais de 6 anos construindo sistemas mobile, web e backend nos setores de saúde, finanças e energia.'
   },
   'hero.ctaWork': { en: 'See My Work', pt: 'Ver Projetos' },
   'hero.ctaTouch': { en: 'Get In Touch', pt: 'Entrar em Contato' },
@@ -28,8 +28,8 @@ const translations = {
     pt: 'Minha experiência abrange os setores de saúde, finanças, educação e energia. Tenho facilidade em conduzir projetos de ponta a ponta: desde o design de pipelines de CI/CD e distribuição MDM até a entrega de frontends refinados em React e Angular.'
   },
   'about.p3': {
-    en: "Currently completing a <strong>Bachelor's in Software Engineering</strong> at PUCRS (Brazil) with an academic exchange at <strong>Hankuk University of Foreign Studies</strong> in South Korea — broadening my perspective in cross-cultural and distributed team environments.",
-    pt: 'Atualmente concluindo o <strong>Bacharelado em Engenharia de Software</strong> na PUCRS (Brasil), com intercâmbio acadêmico na <strong>Hankuk University of Foreign Studies</strong> na Coreia do Sul — ampliando minha perspectiva em ambientes multiculturais e equipes distribuídas.'
+    en: "Currently completing a <strong>Bachelor's in Software Engineering</strong> at PUCRS (Brazil). In 2026, I completed an academic exchange at <strong>Hankuk University of Foreign Studies</strong> in South Korea — broadening my perspective in cross-cultural and distributed team environments.",
+    pt: 'Atualmente concluindo o <strong>Bacharelado em Engenharia de Software</strong> na PUCRS (Brasil). Em 2026, concluí um intercâmbio acadêmico na <strong>Hankuk University of Foreign Studies</strong>, na Coreia do Sul — ampliando minha perspectiva em ambientes multiculturais e equipes distribuídas.'
   },
   'about.h1': { en: 'Technical reference &amp; team lead', pt: 'Referência técnica e liderança de equipe' },
   'about.h2': { en: 'Full lifecycle: architecture → CI/CD → delivery', pt: 'Ciclo completo: arquitetura → CI/CD → entrega' },
