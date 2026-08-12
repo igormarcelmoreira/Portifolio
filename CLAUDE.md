@@ -4,7 +4,7 @@
 Personal portfolio website. Purpose: showcase projects, skills, and experience.
 
 ## Repository
-- **GitHub**: https://github.com/w1ggor/Portifolio
+- **GitHub**: https://github.com/igormarcelmoreira/Portifolio
 - **Branch strategy**: main
 
 ## Project Structure
@@ -20,8 +20,17 @@ _To be updated as the project grows._
 index.html        — single-page portfolio
 css/style.css     — all styles (dark theme, responsive)
 js/main.js        — scroll effects, typewriter, tilt, mobile nav
+js/i18n.js        — EN/PT-BR translation dictionary + language switching
 CLAUDE.md         — this file
 ```
+
+## Internationalization (i18n)
+- Two languages: English (default) and Brazilian Portuguese.
+- `js/i18n.js` holds a flat `translations` key → `{en, pt}` dictionary; translatable elements are marked `data-i18n="key"` in `index.html`.
+- Language resolution: `localStorage['portfolio-lang']` override, else `navigator.language` (starts with `pt` → Portuguese, else English).
+- Manual override: EN/PT toggle button in the navbar (`#lang-toggle`), persists choice to `localStorage` and updates `<html lang>`.
+- Hero typewriter titles live in `heroTitles` (same file) and restart on a `langchange` custom event, consumed by `js/main.js`.
+- Tech/tool names (React, Angular, C#, etc.) are intentionally left untranslated in both languages.
 
 ## Design System
 - Dark navy theme: `#0a0e1a` background, `#64ffda` accent (teal)
@@ -43,6 +52,12 @@ CLAUDE.md         — this file
 - Update this file with every major change.
 
 ## Changelog
+
+### 2026-08-12 — v1.1 English/Portuguese i18n
+- Added EN/PT-BR language support via `js/i18n.js`, with a navbar toggle and auto-detection from browser locale (`localStorage` override on manual switch).
+- Tagged all translatable copy in `index.html` with `data-i18n` keys; hero typewriter titles now switch language too.
+- Updated GitHub links/URLs to reflect username change to `igormarcelmoreira`.
+- Verified with Playwright: correct auto-detect, full-page translation on toggle, no console errors, persistence across reload.
 
 ### 2026-04-13 — v1.0 Initial Portfolio
 - Built full single-page portfolio from CV data.

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Igor Marcel — Full-Stack Developer</title>
+  <title data-i18n="meta.title">Igor Marcel — Full-Stack Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -16,12 +16,15 @@
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">IM<span class="accent">.</span></a>
       <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#education">Education</a></li>
-        <li><a href="#contact" class="btn-nav">Contact</a></li>
+        <li><a href="#about" data-i18n="nav.about">About</a></li>
+        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="#education" data-i18n="nav.education">Education</a></li>
+        <li><a href="#contact" class="btn-nav" data-i18n="nav.contact">Contact</a></li>
+        <li><button id="lang-toggle" class="lang-toggle" aria-label="Switch language" type="button">
+          <span class="lang-opt" data-lang="en">EN</span><span class="lang-sep">/</span><span class="lang-opt" data-lang="pt">PT</span>
+        </button></li>
       </ul>
       <button class="nav-toggle" aria-label="Toggle menu">
         <span></span><span></span><span></span>
@@ -33,28 +36,28 @@
   <section id="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <p class="hero-greeting reveal">Hi, my name is</p>
+      <p class="hero-greeting reveal" data-i18n="hero.greeting">Hi, my name is</p>
       <h1 class="hero-name reveal">Igor Marcel<span class="accent">.</span></h1>
-      <h2 class="hero-title reveal">Senior Full-Stack Developer</h2>
-      <p class="hero-desc reveal">
+      <h2 class="hero-title reveal"></h2>
+      <p class="hero-desc reveal" data-i18n="hero.desc">
         6+ years building mobile, web &amp; backend systems across healthcare, finance and energy sectors.
         Currently on academic exchange at <span class="accent-text">HUFS, South Korea</span>.
       </p>
       <div class="hero-cta reveal">
-        <a href="#projects" class="btn-primary">See My Work</a>
-        <a href="mailto:igor2mxavier@gmail.com" class="btn-outline">Get In Touch</a>
+        <a href="#projects" class="btn-primary" data-i18n="hero.ctaWork">See My Work</a>
+        <a href="mailto:igor2mxavier@gmail.com" class="btn-outline" data-i18n="hero.ctaTouch">Get In Touch</a>
       </div>
       <div class="hero-socials reveal">
         <a href="https://linkedin.com/in/igormarcelmoreira" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452H17.21v-5.569c0-1.328-.024-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.985V9h3.102v1.561h.043c.432-.816 1.487-1.677 3.061-1.677 3.271 0 3.875 2.152 3.875 4.949v6.619zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zm1.554 13.019H3.78V9h3.111v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
-        <a href="https://github.com/w1ggor" target="_blank" rel="noopener" aria-label="GitHub">
+        <a href="https://github.com/igormarcelmoreira" target="_blank" rel="noopener" aria-label="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
         </a>
       </div>
     </div>
     <div class="hero-scroll">
-      <span>scroll</span>
+      <span data-i18n="hero.scroll">scroll</span>
       <div class="scroll-line"></div>
     </div>
   </section>
@@ -62,45 +65,45 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">01.</span> About Me</h2>
+      <h2 class="section-title reveal"><span class="accent mono">01.</span> <span data-i18n="about.title">About Me</span></h2>
       <div class="about-grid">
         <div class="about-text reveal">
-          <p>
+          <p data-i18n="about.p1">
             I'm a <strong>Full-Stack Developer</strong> with over 6 years of experience building production-grade mobile, web, and backend systems.
             I've worked as a technical reference across teams — leading architecture decisions, defining code standards, and mentoring developers.
           </p>
-          <p>
+          <p data-i18n="about.p2">
             My background spans healthcare, finance, education, and energy sectors. I'm comfortable owning projects end-to-end:
             from designing CI/CD pipelines and MDM distribution to shipping polished frontends in React and Angular.
           </p>
-          <p>
+          <p data-i18n="about.p3">
             Currently completing a <strong>Bachelor's in Software Engineering</strong> at PUCRS (Brazil) with an academic exchange at
             <strong>Hankuk University of Foreign Studies</strong> in South Korea — broadening my perspective in cross-cultural and distributed team environments.
           </p>
           <ul class="about-highlights">
-            <li><span class="accent">▸</span> Technical reference &amp; team lead</li>
-            <li><span class="accent">▸</span> Full lifecycle: architecture → CI/CD → delivery</li>
-            <li><span class="accent">▸</span> Mobile (iOS &amp; Android), Web, Backend</li>
-            <li><span class="accent">▸</span> Multicultural, distributed teams</li>
+            <li><span class="accent">▸</span> <span data-i18n="about.h1">Technical reference &amp; team lead</span></li>
+            <li><span class="accent">▸</span> <span data-i18n="about.h2">Full lifecycle: architecture → CI/CD → delivery</span></li>
+            <li><span class="accent">▸</span> <span data-i18n="about.h3">Mobile (iOS &amp; Android), Web, Backend</span></li>
+            <li><span class="accent">▸</span> <span data-i18n="about.h4">Multicultural, distributed teams</span></li>
           </ul>
         </div>
         <div class="about-card reveal">
           <div class="card-inner">
             <div class="stat">
               <span class="stat-num">6<span class="accent">+</span></span>
-              <span class="stat-label">Years Experience</span>
+              <span class="stat-label" data-i18n="about.stat1">Years Experience</span>
             </div>
             <div class="stat">
               <span class="stat-num">6<span class="accent">+</span></span>
-              <span class="stat-label">Production Apps Shipped</span>
+              <span class="stat-label" data-i18n="about.stat2">Production Apps Shipped</span>
             </div>
             <div class="stat">
               <span class="stat-num">3<span class="accent">+</span></span>
-              <span class="stat-label">Countries &amp; Teams</span>
+              <span class="stat-label" data-i18n="about.stat3">Countries &amp; Teams</span>
             </div>
             <div class="stat">
               <span class="stat-num">2<span class="accent">×</span></span>
-              <span class="stat-label">Award-Winning Projects</span>
+              <span class="stat-label" data-i18n="about.stat4">Award-Winning Projects</span>
             </div>
           </div>
         </div>
@@ -111,7 +114,7 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">02.</span> Experience</h2>
+      <h2 class="section-title reveal"><span class="accent mono">02.</span> <span data-i18n="exp.title">Experience</span></h2>
       <div class="timeline">
 
         <div class="timeline-item reveal">
@@ -119,16 +122,16 @@
           <div class="timeline-date">2022 — 2025</div>
           <div class="timeline-card">
             <div class="timeline-header">
-              <h3>Senior Full-Stack Developer <span class="accent">&</span> Technical Reference</h3>
+              <h3 data-i18n="exp.true.role">Senior Full-Stack Developer <span class="accent">&</span> Technical Reference</h3>
               <span class="timeline-company">TRUE — Tecnologia para a vida</span>
             </div>
             <ul class="timeline-list">
-              <li>Served as technical reference for mobile and web teams — guiding architecture, reviewing code, defining standards across concurrent projects.</li>
-              <li>Designed and maintained CI/CD pipelines for Android and iOS, improving delivery reliability and reducing release overhead.</li>
-              <li>Led enterprise app distribution via <strong>Microsoft Intune (MDM)</strong>, including RBAC-aligned access controls.</li>
-              <li>Integrated <strong>Play Integrity API</strong> for runtime security and authenticity verification on Android.</li>
-              <li>Led full technology migration from <strong>Xamarin → .NET MAUI</strong> across 6 production applications.</li>
-              <li>Full stack: <strong>Angular/TypeScript</strong> (frontend), <strong>WCF / VB.Net / ASP.NET Core</strong> (backend), <strong>C#</strong> (mobile).</li>
+              <li data-i18n="exp.true.l1">Served as technical reference for mobile and web teams — guiding architecture, reviewing code, defining standards across concurrent projects.</li>
+              <li data-i18n="exp.true.l2">Designed and maintained CI/CD pipelines for Android and iOS, improving delivery reliability and reducing release overhead.</li>
+              <li data-i18n="exp.true.l3">Led enterprise app distribution via <strong>Microsoft Intune (MDM)</strong>, including RBAC-aligned access controls.</li>
+              <li data-i18n="exp.true.l4">Integrated <strong>Play Integrity API</strong> for runtime security and authenticity verification on Android.</li>
+              <li data-i18n="exp.true.l5">Led full technology migration from <strong>Xamarin → .NET MAUI</strong> across 6 production applications.</li>
+              <li data-i18n="exp.true.l6">Full stack: <strong>Angular/TypeScript</strong> (frontend), <strong>WCF / VB.Net / ASP.NET Core</strong> (backend), <strong>C#</strong> (mobile).</li>
             </ul>
             <div class="timeline-tags">
               <span>C#</span><span>.NET MAUI</span><span>Angular</span><span>TypeScript</span>
@@ -142,16 +145,16 @@
           <div class="timeline-date">2020 — 2022</div>
           <div class="timeline-card">
             <div class="timeline-header">
-              <h3>Full-Stack Developer</h3>
+              <h3 data-i18n="exp.interanet.role">Full-Stack Developer</h3>
               <span class="timeline-company">Interanet IT</span>
             </div>
             <ul class="timeline-list">
-              <li>Delivered web, backend, and mobile solutions for clients across healthcare, finance, education, and energy sectors.</li>
-              <li><strong>Banrisul:</strong> Deployed and administered Moodle LMS on corporate intranet for employee training.</li>
-              <li><strong>Sulgás:</strong> Maintained Joomla CMS, integrated ERP APIs, and developed mobile client in Xamarin Forms.</li>
-              <li><strong>Marista:</strong> Development and maintenance in ASP.NET Core and SharePoint; workflow automation.</li>
-              <li><strong>Sinos Tecnologia:</strong> Full ERP system built with Angular and ASP.NET Core C#.</li>
-              <li><strong>Aucon:</strong> Mobile application development in Xamarin Forms.</li>
+              <li data-i18n="exp.interanet.l1">Delivered web, backend, and mobile solutions for clients across healthcare, finance, education, and energy sectors.</li>
+              <li data-i18n="exp.interanet.l2"><strong>Banrisul:</strong> Deployed and administered Moodle LMS on corporate intranet for employee training.</li>
+              <li data-i18n="exp.interanet.l3"><strong>Sulgás:</strong> Maintained Joomla CMS, integrated ERP APIs, and developed mobile client in Xamarin Forms.</li>
+              <li data-i18n="exp.interanet.l4"><strong>Marista:</strong> Development and maintenance in ASP.NET Core and SharePoint; workflow automation.</li>
+              <li data-i18n="exp.interanet.l5"><strong>Sinos Tecnologia:</strong> Full ERP system built with Angular and ASP.NET Core C#.</li>
+              <li data-i18n="exp.interanet.l6"><strong>Aucon:</strong> Mobile application development in Xamarin Forms.</li>
             </ul>
             <div class="timeline-tags">
               <span>ASP.NET Core</span><span>Angular</span><span>Xamarin</span>
@@ -167,8 +170,8 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">03.</span> Projects</h2>
-      <p class="section-sub reveal">Selected work from professional and academic contexts.</p>
+      <h2 class="section-title reveal"><span class="accent mono">03.</span> <span data-i18n="projects.title">Projects</span></h2>
+      <p class="section-sub reveal" data-i18n="projects.sub">Selected work from professional and academic contexts.</p>
 
       <div class="projects-grid">
 
@@ -177,10 +180,10 @@
             <div class="project-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg>
             </div>
-            <span class="project-badge">Featured</span>
+            <span class="project-badge" data-i18n="projects.badge.featured">Featured</span>
           </div>
           <h3>CAIRHOS</h3>
-          <p>Web tool for medical regulators to visualise real-time healthcare facility availability. Led development and coordinated team execution at TRUE.</p>
+          <p data-i18n="projects.cairhos.p">Web tool for medical regulators to visualise real-time healthcare facility availability. Led development and coordinated team execution at TRUE.</p>
           <div class="project-tags"><span>Angular</span><span>TypeScript</span><span>ASP.NET Core</span><span>Healthcare</span></div>
         </div>
 
@@ -189,10 +192,10 @@
             <div class="project-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
             </div>
-            <span class="project-badge">6 Apps</span>
+            <span class="project-badge" data-i18n="projects.badge.apps">6 Apps</span>
           </div>
-          <h3>Mobile App Suite</h3>
-          <p>Full lifecycle development of 6 production apps: CHAMAR 192, SAPH Mobile, TRUE PCR, TRUE Checklist, TRUE SAPH Management, Unimed POA Chamar SOS — CI/CD on Android & iOS.</p>
+          <h3 data-i18n="projects.mobile.title">Mobile App Suite</h3>
+          <p data-i18n="projects.mobile.p">Full lifecycle development of 6 production apps: CHAMAR 192, SAPH Mobile, TRUE PCR, TRUE Checklist, TRUE SAPH Management, Unimed POA Chamar SOS — CI/CD on Android & iOS.</p>
           <div class="project-tags"><span>.NET MAUI</span><span>C#</span><span>GitHub Actions</span><span>Intune MDM</span></div>
         </div>
 
@@ -201,10 +204,10 @@
             <div class="project-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
             </div>
-            <span class="project-badge award">🥇 1st Place</span>
+            <span class="project-badge award" data-i18n="projects.badge.first">🥇 1st Place</span>
           </div>
           <h3>Lino</h3>
-          <p>Hackathon 2025 winner. Front-End Lead — built full UI in React/TypeScript under time constraints, established code standards, led frontend-backend integration.</p>
+          <p data-i18n="projects.lino.p">Hackathon 2025 winner. Front-End Lead — built full UI in React/TypeScript under time constraints, established code standards, led frontend-backend integration.</p>
           <div class="project-tags"><span>React</span><span>TypeScript</span><span>Hackathon</span></div>
         </div>
 
@@ -213,10 +216,10 @@
             <div class="project-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             </div>
-            <span class="project-badge award">Highlight Award</span>
+            <span class="project-badge award" data-i18n="projects.badge.highlight">Highlight Award</span>
           </div>
           <h3>Polymathech</h3>
-          <p>AGES 2024/1 — Award-winning web app in React TypeScript. Front-End Reference: enforced code standards and tooling consistency across the team.</p>
+          <p data-i18n="projects.poly.p">AGES 2024/1 — Award-winning web app in React TypeScript. Front-End Reference: enforced code standards and tooling consistency across the team.</p>
           <div class="project-tags"><span>React</span><span>TypeScript</span><span>Figma</span></div>
         </div>
 
@@ -227,7 +230,7 @@
             </div>
           </div>
           <h3>CP-Planta</h3>
-          <p>AGES 2024/2 — Front-End & Data Architecture Reference. UI in React with Figma; defined data workflows, logical-conceptual models, and API integration contracts.</p>
+          <p data-i18n="projects.cpplanta.p">AGES 2024/2 — Front-End & Data Architecture Reference. UI in React with Figma; defined data workflows, logical-conceptual models, and API integration contracts.</p>
           <div class="project-tags"><span>React</span><span>Figma</span><span>API Design</span></div>
         </div>
 
@@ -237,9 +240,9 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
             </div>
           </div>
-          <h3>Moving The Cities</h3>
-          <p>International multidisciplinary project in Santiago, Chile — addressing real business challenges with a social impact focus across multiple nationalities.</p>
-          <div class="project-tags"><span>Collaboration</span><span>Social Impact</span><span>International</span></div>
+          <h3 data-i18n="projects.mtc.title">Moving The Cities</h3>
+          <p data-i18n="projects.mtc.p">International multidisciplinary project in Santiago, Chile — addressing real business challenges with a social impact focus across multiple nationalities.</p>
+          <div class="project-tags"><span data-i18n="projects.mtc.tag1">Collaboration</span><span data-i18n="projects.mtc.tag2">Social Impact</span><span data-i18n="projects.mtc.tag3">International</span></div>
         </div>
 
         <div class="project-card reveal">
@@ -249,7 +252,7 @@
             </div>
           </div>
           <h3>Sinos ERP</h3>
-          <p>Full ERP system built from scratch for Sinos Tecnologia using Angular and ASP.NET Core C# — covering finance, inventory, and operational workflows.</p>
+          <p data-i18n="projects.sinos.p">Full ERP system built from scratch for Sinos Tecnologia using Angular and ASP.NET Core C# — covering finance, inventory, and operational workflows.</p>
           <div class="project-tags"><span>Angular</span><span>ASP.NET Core</span><span>C#</span><span>ERP</span></div>
         </div>
 
@@ -260,11 +263,11 @@
   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">04.</span> Skills</h2>
+      <h2 class="section-title reveal"><span class="accent mono">04.</span> <span data-i18n="skills.title">Skills</span></h2>
       <div class="skills-grid">
 
         <div class="skill-group reveal">
-          <h3><span class="accent">▸</span> Languages</h3>
+          <h3><span class="accent">▸</span> <span data-i18n="skills.languages">Languages</span></h3>
           <div class="skill-pills">
             <span>C#</span><span>TypeScript</span><span>JavaScript</span>
             <span>Python</span><span>HTML</span><span>CSS</span><span>Java</span>
@@ -272,7 +275,7 @@
         </div>
 
         <div class="skill-group reveal">
-          <h3><span class="accent">▸</span> Frameworks & Libraries</h3>
+          <h3><span class="accent">▸</span> <span data-i18n="skills.frameworks">Frameworks & Libraries</span></h3>
           <div class="skill-pills">
             <span>React</span><span>Angular</span><span>ASP.NET Core</span>
             <span>.NET MAUI</span><span>Xamarin</span><span>Node.js</span><span>NestJS</span>
@@ -280,7 +283,7 @@
         </div>
 
         <div class="skill-group reveal">
-          <h3><span class="accent">▸</span> Mobile</h3>
+          <h3><span class="accent">▸</span> <span data-i18n="skills.mobile">Mobile</span></h3>
           <div class="skill-pills">
             <span>Android</span><span>iOS</span><span>MAUI</span>
             <span>Xamarin Forms</span><span>Microsoft Intune MDM</span><span>Play Integrity API</span>
@@ -288,7 +291,7 @@
         </div>
 
         <div class="skill-group reveal">
-          <h3><span class="accent">▸</span> CI/CD & DevOps</h3>
+          <h3><span class="accent">▸</span> <span data-i18n="skills.cicd">CI/CD & DevOps</span></h3>
           <div class="skill-pills">
             <span>GitHub Actions</span><span>Azure DevOps</span><span>GitLab CI</span>
             <span>Bitbucket Pipelines</span><span>TFS</span>
@@ -296,14 +299,14 @@
         </div>
 
         <div class="skill-group reveal">
-          <h3><span class="accent">▸</span> Cloud & Platforms</h3>
+          <h3><span class="accent">▸</span> <span data-i18n="skills.cloud">Cloud & Platforms</span></h3>
           <div class="skill-pills">
             <span>AWS</span><span>Microsoft Azure</span><span>Firebase</span>
           </div>
         </div>
 
         <div class="skill-group reveal">
-          <h3><span class="accent">▸</span> Tools & Practices</h3>
+          <h3><span class="accent">▸</span> <span data-i18n="skills.tools">Tools & Practices</span></h3>
           <div class="skill-pills">
             <span>Git</span><span>Figma</span><span>Visual Studio</span><span>VS Code</span>
             <span>SharePoint</span><span>Joomla</span><span>Moodle</span>
@@ -318,55 +321,55 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">05.</span> Education</h2>
+      <h2 class="section-title reveal"><span class="accent mono">05.</span> <span data-i18n="edu.title">Education</span></h2>
       <div class="edu-grid">
 
         <div class="edu-card reveal">
           <div class="edu-year">2026</div>
           <div class="edu-body">
-            <h3>Academic Exchange — Software Engineering</h3>
+            <h3 data-i18n="edu.hufs.title">Academic Exchange — Software Engineering</h3>
             <span class="edu-school">Hankuk University of Foreign Studies (HUFS)</span>
-            <span class="edu-location">Seoul, South Korea</span>
+            <span class="edu-location" data-i18n="edu.hufs.loc">Seoul, South Korea</span>
           </div>
         </div>
 
         <div class="edu-card reveal">
-          <div class="edu-year">2023 — Present</div>
+          <div class="edu-year" data-i18n="edu.pucrs.year">2023 — Present</div>
           <div class="edu-body">
-            <h3>Bachelor's in Software Engineering</h3>
+            <h3 data-i18n="edu.pucrs.title">Bachelor's in Software Engineering</h3>
             <span class="edu-school">Pontifícia Universidade Católica do Rio Grande do Sul (PUCRS)</span>
-            <span class="edu-location">Porto Alegre, Brazil</span>
+            <span class="edu-location" data-i18n="edu.pucrs.loc">Porto Alegre, Brazil</span>
           </div>
         </div>
 
         <div class="edu-card reveal">
           <div class="edu-year">2020 — 2022</div>
           <div class="edu-body">
-            <h3>Control and Automation Engineering</h3>
+            <h3 data-i18n="edu.uergs.title">Control and Automation Engineering</h3>
             <span class="edu-school">Universidade Estadual do Rio Grande do Sul (UERGS)</span>
-            <span class="edu-location">Rio Grande do Sul, Brazil</span>
+            <span class="edu-location" data-i18n="edu.uergs.loc">Rio Grande do Sul, Brazil</span>
           </div>
         </div>
 
       </div>
 
       <div class="languages-block reveal">
-        <h3>Languages</h3>
+        <h3 data-i18n="edu.langsTitle">Languages</h3>
         <div class="lang-grid">
           <div class="lang-item">
             <span class="lang-flag">🇧🇷</span>
-            <span class="lang-name">Portuguese</span>
-            <span class="lang-level native">Native</span>
+            <span class="lang-name" data-i18n="edu.lang.pt">Portuguese</span>
+            <span class="lang-level native" data-i18n="edu.level.native">Native</span>
           </div>
           <div class="lang-item">
             <span class="lang-flag">🇺🇸</span>
-            <span class="lang-name">English</span>
-            <span class="lang-level advanced">Advanced</span>
+            <span class="lang-name" data-i18n="edu.lang.en">English</span>
+            <span class="lang-level advanced" data-i18n="edu.level.advanced">Advanced</span>
           </div>
           <div class="lang-item">
             <span class="lang-flag">🇯🇵</span>
-            <span class="lang-name">Japanese</span>
-            <span class="lang-level beginner">Beginner</span>
+            <span class="lang-name" data-i18n="edu.lang.jp">Japanese</span>
+            <span class="lang-level beginner" data-i18n="edu.level.beginner">Beginner</span>
           </div>
         </div>
       </div>
@@ -376,16 +379,16 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">06.</span> Get In Touch</h2>
+      <h2 class="section-title reveal"><span class="accent mono">06.</span> <span data-i18n="contact.title">Get In Touch</span></h2>
       <div class="contact-content reveal">
-        <p>
+        <p data-i18n="contact.p">
           I'm currently open to new opportunities — whether it's a full-time role, freelance project, or just a conversation.
           Feel free to reach out and I'll get back to you.
         </p>
-        <a href="mailto:igor2mxavier@gmail.com" class="btn-primary btn-large">Say Hello</a>
+        <a href="mailto:igor2mxavier@gmail.com" class="btn-primary btn-large" data-i18n="contact.cta">Say Hello</a>
         <div class="contact-links">
           <a href="https://linkedin.com/in/igormarcelmoreira" target="_blank" rel="noopener">LinkedIn</a>
-          <a href="https://github.com/w1ggor" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://github.com/igormarcelmoreira" target="_blank" rel="noopener">GitHub</a>
           <a href="tel:+8201079639226">+82 010 7963 9226</a>
         </div>
       </div>
@@ -395,11 +398,12 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <span>Designed &amp; built by <span class="accent">Igor Marcel</span></span>
+      <span data-i18n="footer.built">Designed &amp; built by <span class="accent">Igor Marcel</span></span>
       <span class="mono small">igor2mxavier@gmail.com</span>
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

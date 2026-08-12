@@ -127,6 +127,35 @@ body {
   border-radius: 2px;
   transition: all var(--transition);
 }
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: transparent;
+  border: 1px solid rgba(100,255,218,0.25);
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+}
+.lang-toggle .lang-opt {
+  color: var(--text-dim);
+  transition: color var(--transition);
+}
+.lang-toggle .lang-sep {
+  color: var(--text-dim);
+  opacity: 0.4;
+}
+.lang-toggle .lang-opt.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+.lang-toggle:hover {
+  border-color: var(--accent);
+}
 
 /* ─── HERO ────────────────────────────────────────────────── */
 #hero {

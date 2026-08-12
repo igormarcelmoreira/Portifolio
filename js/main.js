@@ -67,31 +67,27 @@ style.textContent = '.nav-links a.active { color: var(--accent) !important; }';
 document.head.appendChild(style);
 
 /* ─── TYPEWRITER HERO TITLE ───────────────────────────────── */
-const titles = [
-  'Senior Full-Stack Developer',
-  'Mobile & Web Engineer',
-  'Technical Reference & Mentor',
-  'CI/CD & DevOps Practitioner',
-];
 const heroTitle = document.querySelector('.hero-title');
 let titleIndex = 0;
 let charIndex = 0;
 let deleting = false;
 let paused = false;
+let typewriterTimer = null;
 
 function typeWriter() {
   if (paused) return;
-  const current = titles[titleIndex];
+  const titles = heroTitles[window.currentLang] || heroTitles.en;
+  const current = titles[titleIndex % titles.length];
 
   if (!deleting) {
     heroTitle.textContent = current.slice(0, charIndex + 1);
     charIndex++;
     if (charIndex === current.length) {
       paused = true;
-      setTimeout(() => { paused = false; deleting = true; typeWriter(); }, 2800);
+      typewriterTimer = setTimeout(() => { paused = false; deleting = true; typeWriter(); }, 2800);
       return;
     }
-    setTimeout(typeWriter, 55);
+    typewriterTimer = setTimeout(typeWriter, 55);
   } else {
     heroTitle.textContent = current.slice(0, charIndex - 1);
     charIndex--;
@@ -99,9 +95,20 @@ function typeWriter() {
       deleting = false;
       titleIndex = (titleIndex + 1) % titles.length;
     }
-    setTimeout(typeWriter, 30);
+    typewriterTimer = setTimeout(typeWriter, 30);
   }
 }
+
+// Restart the animation cleanly whenever the language switches
+document.addEventListener('langchange', () => {
+  clearTimeout(typewriterTimer);
+  paused = false;
+  deleting = false;
+  charIndex = 0;
+  titleIndex = 0;
+  heroTitle.textContent = '';
+  typeWriter();
+});
 
 // Start after initial reveal animation settles
 setTimeout(typeWriter, 1200);
