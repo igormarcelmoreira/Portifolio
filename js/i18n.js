@@ -111,13 +111,15 @@ const translations = {
 
 const heroTitles = {
   en: [
-    'Senior Full-Stack Developer',
+    'Software Engineer',
+    'Full-Stack Developer',
     'Mobile & Web Engineer',
     'Technical Reference & Mentor',
     'CI/CD & DevOps Practitioner',
   ],
   pt: [
-    'Desenvolvedor Full-Stack Sênior',
+    'Engenheiro de Software',
+    'Desenvolvedor Full-Stack',
     'Engenheiro Mobile & Web',
     'Referência Técnica & Mentor',
     'Praticante de CI/CD & DevOps',
