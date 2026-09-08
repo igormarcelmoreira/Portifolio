@@ -75,7 +75,6 @@ const translations = {
   'projects.mtc.tag3': { en: 'International', pt: 'Internacional' },
   'projects.sinos.p': { en: 'Full ERP system built from scratch for Sinos Tecnologia using Angular and ASP.NET Core C# — covering finance, inventory, and operational workflows.', pt: 'Sistema ERP completo desenvolvido do zero para a Sinos Tecnologia usando Angular e ASP.NET Core C# — cobrindo finanças, estoque e fluxos operacionais.' },
   'projects.link.company': { en: 'Company Site', pt: 'Site da Empresa' },
-  'projects.link.live': { en: 'Live Site', pt: 'Ver Ferramenta' },
 
   'skills.title': { en: 'Skills', pt: 'Habilidades' },
   'skills.languages': { en: 'Languages', pt: 'Linguagens' },
