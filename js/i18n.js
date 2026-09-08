@@ -59,7 +59,6 @@ const translations = {
   'projects.title': { en: 'Projects', pt: 'Projetos' },
   'projects.sub': { en: 'Selected work from professional and academic contexts.', pt: 'Trabalhos selecionados de contextos profissionais e acadêmicos.' },
   'projects.badge.featured': { en: 'Featured', pt: 'Destaque' },
-  'projects.badge.apps': { en: '6 Apps', pt: '6 Apps' },
   'projects.badge.first': { en: '🥇 1st Place', pt: '🥇 1º Lugar' },
   'projects.badge.highlight': { en: 'Highlight Award', pt: 'Projeto Destaque' },
   'projects.cairhos.p': { en: 'Web tool for medical regulators to visualise real-time healthcare facility availability. Led development and coordinated team execution at TRUE.', pt: 'Ferramenta web para reguladores médicos visualizarem disponibilidade de unidades de saúde em tempo real. Liderança no desenvolvimento e coordenação da equipe na TRUE.' },
