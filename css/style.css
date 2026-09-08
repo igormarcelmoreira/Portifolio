@@ -580,6 +580,23 @@ section:nth-child(even) { background: var(--bg2); }
   padding: 0.2rem 0.55rem;
   border-radius: 4px;
 }
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-top: -0.25rem;
+}
+.project-links a {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition), opacity var(--transition);
+}
+.project-links a:hover {
+  border-color: var(--accent);
+}
 
 /* ─── SKILLS ──────────────────────────────────────────────── */
 .skills-grid {
