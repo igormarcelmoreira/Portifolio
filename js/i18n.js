@@ -82,6 +82,11 @@ const translations = {
   'skills.cicd': { en: 'CI/CD & DevOps', pt: 'CI/CD e DevOps' },
   'skills.cloud': { en: 'Cloud & Platforms', pt: 'Cloud e Plataformas' },
   'skills.tools': { en: 'Tools & Practices', pt: 'Ferramentas e Práticas' },
+  'skills.github': { en: 'Live from GitHub', pt: 'Ao Vivo do GitHub' },
+  'skills.githubRepos': { en: 'Public Repos', pt: 'Repositórios Públicos' },
+  'skills.githubStars': { en: 'Stars Earned', pt: 'Estrelas Conquistadas' },
+  'skills.githubLangs': { en: 'Top Languages', pt: 'Principais Linguagens' },
+  'skills.githubLatest': { en: 'Latest Activity', pt: 'Atividade Recente' },
 
   'edu.title': { en: 'Education', pt: 'Formação' },
   'edu.hufs.title': { en: 'Academic Exchange — Software Engineering', pt: 'Intercâmbio Acadêmico — Engenharia de Software' },

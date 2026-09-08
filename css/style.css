@@ -656,6 +656,95 @@ section:nth-child(even) { background: var(--bg2); }
   border-color: var(--accent);
   background: rgba(100,255,218,0.1);
 }
+.github-activity {
+  margin-top: 2.5rem;
+}
+.github-activity h3 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.github-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.github-stat-card-full {
+  grid-column: 1 / -1;
+}
+@media (max-width: 700px) {
+  .github-stats-grid { grid-template-columns: 1fr; }
+}
+.github-stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color var(--transition);
+}
+.github-stat-card:hover { border-color: rgba(100,255,218,0.25); }
+.github-stat-num {
+  font-family: var(--mono);
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1.1;
+}
+.github-stat-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.4rem;
+}
+.github-stat-card-full .github-stat-label {
+  margin-top: 0;
+  margin-bottom: 0.9rem;
+}
+.github-lang-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+.github-lang-row {
+  display: grid;
+  grid-template-columns: 90px 1fr 2.5rem;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--text);
+}
+.github-lang-track {
+  height: 6px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.github-lang-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 3px;
+}
+.github-lang-pct {
+  color: var(--text-dim);
+  text-align: right;
+}
+.github-latest-repo {
+  font-family: var(--mono);
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--transition);
+}
+.github-latest-repo:hover { border-color: var(--accent); }
 
 /* ─── EDUCATION ───────────────────────────────────────────── */
 .edu-grid {

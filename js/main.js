@@ -5,6 +5,40 @@ fetch('ascii-art.txt')
   .then(text => { heroAscii.textContent = text; })
   .catch(() => { heroAscii.style.display = 'none'; });
 
+/* ─── LIVE GITHUB STATS ───────────────────────────────────── */
+fetch('https://api.github.com/users/igormarcelmoreira/repos?per_page=100&type=owner&sort=updated')
+  .then(res => res.ok ? res.json() : Promise.reject(res.status))
+  .then(repos => {
+    const nonForks = repos.filter(r => !r.fork);
+
+    document.getElementById('gh-repo-count').textContent = nonForks.length;
+
+    const totalStars = nonForks.reduce((sum, r) => sum + r.stargazers_count, 0);
+    document.getElementById('gh-star-count').textContent = totalStars;
+
+    const langCounts = {};
+    nonForks.forEach(r => {
+      if (r.language) langCounts[r.language] = (langCounts[r.language] || 0) + 1;
+    });
+    const topLangs = Object.entries(langCounts).sort((a, b) => b[1] - a[1]).slice(0, 5);
+    const totalLangRepos = topLangs.reduce((sum, [, count]) => sum + count, 0);
+    document.getElementById('gh-lang-bars').innerHTML = topLangs.map(([lang, count]) => {
+      const pct = Math.round((count / totalLangRepos) * 100);
+      return `<div class="github-lang-row"><span>${lang}</span><div class="github-lang-track"><div class="github-lang-fill" style="width:${pct}%"></div></div><span class="github-lang-pct">${pct}%</span></div>`;
+    }).join('');
+
+    const latest = nonForks[0];
+    if (latest) {
+      const latestEl = document.getElementById('gh-latest-repo');
+      latestEl.textContent = latest.name;
+      latestEl.href = latest.html_url;
+    }
+  })
+  .catch(() => {
+    const section = document.querySelector('.github-activity');
+    if (section) section.style.display = 'none';
+  });
+
 /* ─── NAVBAR SCROLL ────────────────────────────────────────── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
