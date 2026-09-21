@@ -4,11 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title data-i18n="meta.title">Igor Marcel — Full-Stack Developer</title>
+  <meta name="theme-color" content="#D8231A" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+    }
+  }
+  </script>
 </head>
 <body>
 
@@ -68,7 +77,7 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">01.</span> <span data-i18n="about.title">About Me</span></h2>
+      <h2 class="section-title reveal"><span data-i18n="about.title">About Me</span></h2>
       <div class="about-grid">
         <div class="about-text reveal">
           <p data-i18n="about.p1">
@@ -117,7 +126,7 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">02.</span> <span data-i18n="exp.title">Experience</span></h2>
+      <h2 class="section-title reveal"><span data-i18n="exp.title">Experience</span></h2>
       <div class="timeline">
 
         <div class="timeline-item reveal">
@@ -173,8 +182,19 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">03.</span> <span data-i18n="projects.title">Projects</span></h2>
+      <h2 class="section-title reveal"><span data-i18n="projects.title">Projects</span></h2>
       <p class="section-sub reveal" data-i18n="projects.sub">Selected work from professional and academic contexts.</p>
+
+      <div class="apps3d reveal" id="apps3d">
+        <div class="apps3d-copy">
+          <h3 data-i18n="projects.apps3d.title">Six apps in production</h3>
+          <p data-i18n="projects.apps3d.hint">Built and shipped at TRUE for Android and iOS. Drag to turn them.</p>
+        </div>
+        <div class="apps3d-stage">
+          <canvas id="apps3d-canvas" role="img" aria-label="Interactive 3D view of the six mobile apps built at TRUE"></canvas>
+          <div class="apps3d-label" id="apps3d-label" hidden></div>
+        </div>
+      </div>
 
       <div class="projects-grid">
 
@@ -292,7 +312,7 @@
   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">04.</span> <span data-i18n="skills.title">Skills</span></h2>
+      <h2 class="section-title reveal"><span data-i18n="skills.title">Skills</span></h2>
       <div class="skills-grid">
 
         <div class="skill-group reveal">
@@ -372,7 +392,7 @@
   <!-- EDUCATION -->
   <section id="education">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">05.</span> <span data-i18n="edu.title">Education</span></h2>
+      <h2 class="section-title reveal"><span data-i18n="edu.title">Education</span></h2>
       <div class="edu-grid">
 
         <div class="edu-card reveal">
@@ -430,7 +450,7 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <h2 class="section-title reveal"><span class="accent mono">06.</span> <span data-i18n="contact.title">Get In Touch</span></h2>
+      <h2 class="section-title reveal"><span data-i18n="contact.title">Get In Touch</span></h2>
       <div class="contact-content reveal">
         <p data-i18n="contact.p">
           I'm currently open to new opportunities — whether it's a full-time role, freelance project, or just a conversation.
@@ -456,5 +476,6 @@
 
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script type="module" src="js/apps3d.js"></script>
 </body>
 </html>

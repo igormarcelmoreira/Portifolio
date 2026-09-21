@@ -73,6 +73,8 @@ const translations = {
   'projects.mtc.tag2': { en: 'Social Impact', pt: 'Impacto Social' },
   'projects.mtc.tag3': { en: 'International', pt: 'Internacional' },
   'projects.sinos.p': { en: 'Full ERP system built from scratch for Sinos Tecnologia using Angular and ASP.NET Core C# — covering finance, inventory, and operational workflows.', pt: 'Sistema ERP completo desenvolvido do zero para a Sinos Tecnologia usando Angular e ASP.NET Core C# — cobrindo finanças, estoque e fluxos operacionais.' },
+  'projects.apps3d.title': { en: 'Six apps in production', pt: 'Seis apps em produção' },
+  'projects.apps3d.hint': { en: 'Built and shipped at TRUE for Android and iOS. Drag to turn them.', pt: 'Desenvolvidos e publicados na TRUE para Android e iOS. Arraste para girar.' },
   'projects.link.company': { en: 'Company Site', pt: 'Site da Empresa' },
 
   'skills.title': { en: 'Skills', pt: 'Habilidades' },
