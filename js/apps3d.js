@@ -19,7 +19,6 @@ const APPS = [
 
 async function init() {
   const THREE = await import('three');
-  const { RoundedBoxGeometry } = await import('three/addons/geometries/RoundedBoxGeometry.js');
   const { OrbitControls } = await import('three/addons/controls/OrbitControls.js');
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -38,6 +37,12 @@ async function init() {
   rim.position.set(-5, -1, 3);
   scene.add(rim);
 
+  // tile geometry: a rounded-rect slab; RADIUS is the outer corner radius.
+  // (RoundedBoxGeometry can't be used: it caps the radius at half the thickness.)
+  const SIZE = 1.5, RADIUS = 0.46, DEPTH = 0.16, BEVEL = 0.03, INSET = 0.07;
+  const FACE = SIZE - INSET * 2;
+  const FACE_RADIUS = RADIUS - INSET;
+
   // rounded-corner alpha mask so each flat icon reads as an app tile
   const mask = document.createElement('canvas');
   mask.width = mask.height = 256;
@@ -46,15 +51,30 @@ async function init() {
   mctx.fillRect(0, 0, 256, 256);
   mctx.fillStyle = '#fff';
   mctx.beginPath();
-  mctx.roundRect(0, 0, 256, 256, 46);
+  mctx.roundRect(0, 0, 256, 256, (FACE_RADIUS / FACE) * 256);
   mctx.fill();
   const alphaMap = new THREE.CanvasTexture(mask);
 
   const loader = new THREE.TextureLoader();
   const maxAniso = renderer.capabilities.getMaxAnisotropy();
-  const bodyGeo = new RoundedBoxGeometry(1.5, 1.5, 0.22, 6, 0.3);
+  const h = SIZE / 2;
+  const outline = new THREE.Shape();
+  outline.moveTo(-h + RADIUS, -h);
+  outline.lineTo(h - RADIUS, -h);
+  outline.absarc(h - RADIUS, -h + RADIUS, RADIUS, -Math.PI / 2, 0);
+  outline.lineTo(h, h - RADIUS);
+  outline.absarc(h - RADIUS, h - RADIUS, RADIUS, 0, Math.PI / 2);
+  outline.lineTo(-h + RADIUS, h);
+  outline.absarc(-h + RADIUS, h - RADIUS, RADIUS, Math.PI / 2, Math.PI);
+  outline.lineTo(-h, -h + RADIUS);
+  outline.absarc(-h + RADIUS, -h + RADIUS, RADIUS, Math.PI, Math.PI * 1.5);
+  const bodyGeo = new THREE.ExtrudeGeometry(outline, {
+    depth: DEPTH, bevelEnabled: true, bevelThickness: BEVEL, bevelSize: 0, bevelSegments: 3, curveSegments: 24,
+  });
+  bodyGeo.translate(0, 0, -DEPTH / 2);
+  const surfaceZ = DEPTH / 2 + BEVEL + 0.002;
   const bodyMat = new THREE.MeshStandardMaterial({ color: 0x0d0d0d, metalness: 0.55, roughness: 0.32 });
-  const faceGeo = new THREE.PlaneGeometry(1.36, 1.36);
+  const faceGeo = new THREE.PlaneGeometry(FACE, FACE);
 
   const group = new THREE.Group();
   scene.add(group);
@@ -73,9 +93,9 @@ async function init() {
     const body = new THREE.Mesh(bodyGeo, bodyMat);
     const faceMat = new THREE.MeshBasicMaterial({ map: textures[i], alphaMap, alphaTest: 0.5 });
     const front = new THREE.Mesh(faceGeo, faceMat);
-    front.position.z = 0.112;
+    front.position.z = surfaceZ;
     const back = new THREE.Mesh(faceGeo, faceMat);
-    back.position.z = -0.112;
+    back.position.z = -surfaceZ;
     back.rotation.y = Math.PI;
     tile.add(body, front, back);
 
