@@ -245,6 +245,16 @@ footer .accent,
   to   { clip-path: inset(-20px); }
 }
 
+/* 3D version of the portrait (js/ascii3d.js); the <pre> above is its fallback */
+.hero-ascii.is-3d { display: none; }
+.hero-ascii3d {
+  flex: 0 0 auto;
+  width: clamp(300px, 38vw, 540px);
+  background: var(--ink);
+  box-shadow: 14px 14px 0 var(--red-deep);
+  animation: print 1.9s cubic-bezier(0.6, 0.05, 0.3, 1) 0.2s backwards;
+}
+
 .hero-scroll {
   position: absolute;
   bottom: 2rem;
@@ -680,6 +690,7 @@ footer { padding: 2rem; border-top: 1px solid var(--panel-line); background: var
   .hero-inner { flex-direction: column; gap: 2.5rem; align-items: flex-start; }
   .hero-content { max-width: 100%; }
   .hero-ascii { font-size: clamp(2.4px, 1.5vw, 3.6px); }
+  .hero-ascii3d { width: min(100%, 440px); }
   .about-grid { grid-template-columns: 1fr; }
   .apps3d { grid-template-columns: 1fr; padding: 1.75rem; gap: 1rem; }
   .apps3d-stage { height: 320px; }
@@ -726,6 +737,6 @@ footer { padding: 2rem; border-top: 1px solid var(--panel-line); background: var
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .hero-ascii, .scroll-line { animation: none; }
+  .hero-ascii, .hero-ascii3d, .scroll-line { animation: none; }
   * { transition-duration: 0.01ms !important; }
 }

@@ -13,7 +13,7 @@ _To be updated as the project grows._
 ## Tech Stack
 - Pure HTML / CSS / Vanilla JS (no build tools — static site)
 - Google Fonts: Archivo (variable width, headings) + Instrument Sans (body) + JetBrains Mono (ASCII portrait only)
-- One runtime dependency: Three.js r170, loaded from jsDelivr through an import map in `index.html` (only used by `js/apps3d.js`; the panel hides itself if WebGL/CDN is unavailable)
+- One runtime dependency: Three.js r170, loaded from jsDelivr through an import map in `index.html` (used by `js/apps3d.js` and `js/ascii3d.js`; both fall back gracefully if WebGL/CDN is unavailable)
 
 ## File Structure
 ```
@@ -22,6 +22,7 @@ css/style.css     — all styles (dark theme, responsive)
 js/main.js        — scroll effects, typewriter, tilt, mobile nav
 js/i18n.js        — EN/PT-BR translation dictionary + language switching
 js/apps3d.js      — interactive 3D app-icon showcase (Three.js ES module)
+js/ascii3d.js     — turns ascii-art.txt into a 3D relief portrait (Three.js ES module)
 assets/           — crosshair.svg (hero registration marks)
 icons/            — TRUE app icons used by the 3D showcase and the project card
 ascii-art.txt     — portrait fetched into the hero
@@ -44,7 +45,7 @@ CLAUDE.md         — this file
 - Type: Archivo at `font-stretch: 62–75%`, weight 700–800 for headings/name; Instrument Sans body. No numbered section labels, no uppercase eyebrows.
 - Cards: black, 6px radius; hover = translate(-4px,-4px) + hard white offset shadow (no glows or blurs).
 - Motion: one entrance only (the ASCII portrait "prints" in via clip-path). Scroll-reveal classes (`.reveal`) are still in the markup/JS but have no CSS effect. `prefers-reduced-motion` is respected.
-- Hero portrait = red ink on a black print panel; the ASCII art must stay light-on-dark (dense glyph = bright).
+- Hero portrait = red ink on a black print panel; the ASCII art must stay light-on-dark (dense glyph = bright). `js/ascii3d.js` renders it as instanced 3D glyphs (depth = blurred character density, tilts toward the pointer, idle sway after 3s); the flat `<pre id="hero-ascii">` is the no-WebGL fallback and is hidden via `.is-3d`. Any glyph ramp in `RAMP` works if `ascii-art.txt` changes.
 - Fully responsive (breakpoints at 900px, 768px, 480px)
 
 ## Sections
@@ -67,6 +68,7 @@ CLAUDE.md         — this file
 - Hero portrait moved onto a black print panel (red ink) with a one-time "print" reveal; crosshair registration marks in the hero corners (`assets/crosshair.svg`, hidden ≤900px).
 - Removed `01.–06.` section numbering and the scroll-reveal slide-up look.
 - New `js/apps3d.js`: Three.js scene of the six TRUE app icons as rounded 3D tiles (OrbitControls drag, hover label, idle float; pauses off-screen; hides itself without WebGL).
+- New `js/ascii3d.js`: the hero ASCII portrait is now a real 3D relief that follows the cursor (flat `<pre>` kept as fallback).
 - Favicon recoloured to red/black. Mobbin MCP was requested for references but returned "requires a paid plan", so the design was done from the brief alone.
 
 ### 2026-08-12 — Post-exchange updates
