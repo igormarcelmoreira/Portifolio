@@ -5,11 +5,11 @@
    Falls back to the plain <pre> if WebGL / the CDN is unavailable. */
 
 const pre = document.getElementById('hero-ascii');
-const RAMP = ' .:-=+*#%@';       // low → high density
+const RAMP = ' .:-=+*#%@';       // low → high density (space is the background)
 const CELL_H = 1.83;             // monospace cell height relative to its width
 const RELIEF = 60;               // total depth range in cell-widths
-const FAR = [0x72, 0x13, 0x0d];  // dim red (deep)
-const NEAR = [0xff, 0x8a, 0x7e]; // bright coral (raised)
+const FAR = [0x9e, 0x1d, 0x15];  // deep glyphs sink toward the red field
+const NEAR = [0x00, 0x00, 0x00]; // raised glyphs are pure black ink
 
 async function init() {
   const THREE = await import('three');
@@ -25,8 +25,8 @@ async function init() {
   let dens = Array.from({ length: rows }, (_, r) =>
     Array.from({ length: cols }, (_, c) => {
       const ch = lines[r][c] || ' ';
-      const i = RAMP.indexOf(ch);
-      return ch === ' ' ? 0.5 : (i < 0 ? 0.5 : i / (RAMP.length - 1));
+      const i = RAMP.indexOf(ch);          // space = background = lowest
+      return i < 0 ? 0.5 : i / (RAMP.length - 1);
     }));
   for (let pass = 0; pass < 2; pass++) {
     dens = dens.map((row, r) => row.map((_, c) => {

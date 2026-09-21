@@ -45,7 +45,7 @@ CLAUDE.md         — this file
 - Type: Archivo at `font-stretch: 62–75%`, weight 700–800 for headings/name; Instrument Sans body. No numbered section labels, no uppercase eyebrows.
 - Cards: black, 6px radius; hover = translate(-4px,-4px) + hard white offset shadow (no glows or blurs).
 - Motion: one entrance only (the ASCII portrait "prints" in via clip-path). Scroll-reveal classes (`.reveal`) are still in the markup/JS but have no CSS effect. `prefers-reduced-motion` is respected.
-- Hero portrait = red ink on a black print panel; the ASCII art must stay light-on-dark (dense glyph = bright). `js/ascii3d.js` renders it as instanced 3D glyphs (depth = blurred character density, tilts toward the pointer, idle sway after 3s); the flat `<pre id="hero-ascii">` is the no-WebGL fallback and is hidden via `.is-3d`. Any glyph ramp in `RAMP` works if `ascii-art.txt` changes.
+- Hero portrait = black ink straight on the red field (no card). `ascii-art.txt` must be dark-subject-on-space: spaces are the background, dense glyphs (`@`) are the subject. `js/ascii3d.js` renders it as instanced 3D glyphs (depth = blurred character density, tilts toward the pointer, idle sway after 3s); the flat `<pre id="hero-ascii">` is the no-WebGL fallback and is hidden via `.is-3d`. Any glyph ramp in `RAMP` works if `ascii-art.txt` changes.
 - Fully responsive (breakpoints at 900px, 768px, 480px)
 
 ## Sections
@@ -65,7 +65,7 @@ CLAUDE.md         — this file
 
 ### 2026-09-20 — v2.0 Red/black redesign + 3D showcase
 - Full visual rewrite of `css/style.css`: red field with black detail, Archivo/Instrument Sans type, hard offset shadows instead of glows.
-- Hero portrait moved onto a black print panel (red ink) with a one-time "print" reveal; crosshair registration marks in the hero corners (`assets/crosshair.svg`, hidden ≤900px).
+- Hero portrait printed in black ink straight on the red field (no card) with a one-time "print" reveal; crosshair registration marks in the hero corners (`assets/crosshair.svg`, hidden ≤900px).
 - Removed `01.–06.` section numbering and the scroll-reveal slide-up look.
 - New `js/apps3d.js`: Three.js scene of the six TRUE app icons as rounded 3D tiles (OrbitControls drag, hover label, idle float; pauses off-screen; hides itself without WebGL).
 - New `js/ascii3d.js`: the hero ASCII portrait is now a real 3D relief that follows the cursor (flat `<pre>` kept as fallback).
