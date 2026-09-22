@@ -2,6 +2,8 @@
 
 ## Project Overview
 Personal portfolio website. Purpose: showcase projects, skills, and experience.
+Also hosts `card/`: a standalone digital business card, intentionally disconnected from the
+main site (no shared nav/JS), meant to be opened via QR code at networking events.
 
 ## Repository
 - **GitHub**: https://github.com/igormarcelmoreira/Portifolio
@@ -27,6 +29,11 @@ assets/           — crosshair.svg (hero registration marks)
 icons/            — TRUE app icons used by the 3D showcase and the project card
 ascii-art.txt     — portrait fetched into the hero
 favicon.svg, CNAME
+card/             — standalone digital business card (own HTML/CSS, no shared nav/JS)
+  index.html      — /card/ route: photo, name, quick actions, Save Contact, link list, bio
+  card.css        — its own compact copy of the brand tokens (red/ink/panel)
+  igor.jpg        — profile photo, resized for the page avatar
+  igor-marcel.vcf — vCard 3.0 (incl. embedded photo) served for "Salvar Contato"
 CLAUDE.md         — this file
 ```
 
@@ -62,6 +69,19 @@ CLAUDE.md         — this file
 - Update this file with every major change.
 
 ## Changelog
+
+### 2026-09-22 — Digital business card (`/card/`)
+- New standalone route for networking events, meant to be opened from a QR code on a phone.
+  Deliberately not part of the main site: own `card.css` (a small copy of the brand tokens),
+  no `js/i18n.js`/`js/main.js`/nav — page loads fast and stands alone.
+- Portuguese-first content, mobile-first layout (max-width 420px, centers on desktop).
+- Quick-action circles (WhatsApp, Ligar, Email) styled after the iOS Contacts card the brief
+  referenced, black circles on the red field. "Salvar Contato" downloads `igor-marcel.vcf`
+  directly (triggers the native add-contact sheet on iOS/Android when opened on-device).
+- `igor-marcel.vcf` is a hand-built vCard 3.0 (not the raw Apple export) — standard `TEL`
+  instead of Apple's `X-APPLE` IMPP-WhatsApp encoding, plus an embedded 320×320 JPEG photo
+  folded to spec. Source files (`Igor ProfPic.png`, the original Apple .vcf export) are
+  gitignored; only the processed `card/` assets are committed.
 
 ### 2026-09-20 — v2.0 Red/black redesign + 3D showcase
 - Full visual rewrite of `css/style.css`: red field with black detail, Archivo/Instrument Sans type, hard offset shadows instead of glows.

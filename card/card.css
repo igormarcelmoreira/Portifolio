@@ -1,0 +1,158 @@
+/* ─── Igoigo Tech contact card — standalone, mobile-first ───── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --red:   #D8231A;
+  --ink:   #000000;
+  --panel: #0B0B0B;
+  --line:  #2A2A2A;
+  --white: #FFFFFF;
+  --soft:  #D6D6D6;
+
+  --display: 'Archivo', 'Arial Narrow', sans-serif;
+  --font:    'Instrument Sans', system-ui, sans-serif;
+}
+
+html { font-size: 16px; }
+
+body {
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--font);
+  line-height: 1.55;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  padding: max(2.5rem, env(safe-area-inset-top)) 1.25rem max(2rem, env(safe-area-inset-bottom));
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatar {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--ink);
+  margin-bottom: 1.25rem;
+}
+
+.role {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.name {
+  font-family: var(--display);
+  font-stretch: 68%;
+  font-size: clamp(2.2rem, 9vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.02;
+  color: var(--white);
+  margin-bottom: 1.75rem;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.75rem;
+}
+.qa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--white);
+  text-decoration: none;
+}
+.qa-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+}
+.qa-icon svg {
+  width: 24px;
+  height: 24px;
+}
+.qa > span:last-child {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.save-btn {
+  display: block;
+  width: 100%;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font);
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-align: center;
+  text-decoration: none;
+  padding: 1.05rem;
+  border-radius: 999px;
+  margin-bottom: 1.75rem;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.save-btn:active { transform: scale(0.97); }
+
+.links {
+  width: 100%;
+  background: var(--panel);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+.links a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 1.25rem;
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--line);
+}
+.links a:last-child { border-bottom: none; }
+.links a svg { width: 16px; height: 16px; color: var(--soft); }
+.links a:active { background: rgba(255,255,255,0.05); }
+
+.bio {
+  font-size: 0.9rem;
+  color: var(--white);
+  opacity: 0.92;
+  max-width: 34ch;
+  margin-bottom: 1.5rem;
+}
+
+footer {
+  font-family: var(--display);
+  font-stretch: 68%;
+  font-weight: 800;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  opacity: 0.6;
+}
+
+@media (min-width: 480px) {
+  body { align-items: center; }
+  .avatar { width: 188px; height: 188px; }
+}
