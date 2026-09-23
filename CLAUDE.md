@@ -4,6 +4,8 @@
 Personal portfolio website. Purpose: showcase projects, skills, and experience.
 Also hosts `card/`: a standalone digital business card, intentionally disconnected from the
 main site (no shared nav/JS), meant to be opened via QR code at networking events.
+And `zine/`: a printable one-page, 8-panel zine (A4 landscape) handed out at those same events,
+QR-linking to `card/`.
 
 ## Repository
 - **GitHub**: https://github.com/igormarcelmoreira/Portifolio
@@ -34,6 +36,10 @@ card/             — standalone digital business card (own HTML/CSS, no shared 
   card.css        — its own compact copy of the brand tokens (red/ink/panel)
   igor.jpg        — profile photo, resized for the page avatar
   igor-marcel.vcf — vCard 3.0 (incl. embedded photo) served for "Salvar Contato"
+zine/             — printable one-page zine, generated (not a served route)
+  index.html      — 8-panel A4-landscape layout; fetches ../ascii-art.txt for the back-cover art
+  qrcode.png      — QR to card/, printed on the front cover
+  igor-marcel-zine.pdf — the print-ready output (regenerate via Playwright's page.pdf(), see below)
 CLAUDE.md         — this file
 ```
 
@@ -69,6 +75,19 @@ CLAUDE.md         — this file
 - Update this file with every major change.
 
 ## Changelog
+
+### 2026-09-22 — Printable networking zine (`zine/`)
+- One-page, 8-panel zine (A4 landscape, 297×210mm) following the classic single-sheet
+  fold-and-cut zine layout: printed in one CSS grid, top row (pages 4-3-2-1) rotated 180°,
+  bottom row (page 5, page 6, back cover, front cover) upright — matches the standard template
+  a physical print of this needs to be cut/folded into.
+- Black-on-white only (this is meant to be photocopier/home-printer friendly); reuses the
+  site's Archivo/Instrument Sans type and the hero's `ascii-art.txt` portrait (rendered small,
+  monospace, on the back cover) to keep the print piece visually tied to the site and card.
+- Front cover carries the headline + `qrcode.png`, which points to `card/`.
+- Not a served page — it's a build artifact. Regenerate the PDF after editing `zine/index.html`
+  via Playwright (`page.pdf({ width: '297mm', height: '210mm', printBackground: true })`) since
+  it needs the print CSS (`@page`, mm units) rendered exactly, which plain screenshots don't give.
 
 ### 2026-09-22 — Digital business card (`/card/`)
 - New standalone route for networking events, meant to be opened from a QR code on a phone.

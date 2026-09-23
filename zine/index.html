@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<title>Igor Marcel — Zine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  @page { size: 297mm 210mm; margin: 0; }
+  html, body { width: 297mm; height: 210mm; background: #000; }
+  body {
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    color: #000;
+  }
+
+  .sheet {
+    width: 297mm;
+    height: 210mm;
+    display: grid;
+    grid-template-columns: repeat(4, 74.25mm);
+    grid-template-rows: repeat(2, 105mm);
+    gap: 0.4mm;
+    background: #000; /* shows through the gap as the panel grid lines */
+  }
+
+  .panel {
+    background: #fff;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* every panel's content sits in its own layer so it can be flipped
+     180° independently of the grid line drawn by the parent's gap */
+  .content {
+    width: 100%;
+    height: 100%;
+    padding: 6mm;
+    display: flex;
+    flex-direction: column;
+  }
+  .flip .content { transform: rotate(180deg); }
+
+  .eyebrow {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 68%;
+    font-weight: 700;
+    font-size: 3.6mm;
+    margin-bottom: 3mm;
+  }
+  h2 {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 62%;
+    font-weight: 800;
+    font-size: 7mm;
+    line-height: 0.95;
+    margin-bottom: 4mm;
+  }
+  p, li {
+    font-size: 3.4mm;
+    line-height: 1.5;
+  }
+  ul { list-style: none; }
+  li { margin-bottom: 2.5mm; padding-left: 3.2mm; position: relative; }
+  li::before { content: '—'; position: absolute; left: 0; }
+  strong { font-weight: 700; }
+  .small { font-size: 2.9mm; opacity: 0.75; }
+  .mono { font-family: 'Archivo', monospace; }
+
+  /* ── FRONT COVER ─────────────────────────────────────────── */
+  .cover .content { justify-content: space-between; }
+  .cover .headline {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 62%;
+    font-weight: 800;
+    font-size: 12mm;
+    line-height: 0.92;
+  }
+  .cover .role {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 75%;
+    font-weight: 700;
+    font-size: 4mm;
+    margin-top: 2mm;
+  }
+  .cover .oneliner { font-size: 3.6mm; margin-top: 4mm; max-width: 30ch; }
+  .cover .qr-block { display: flex; align-items: center; gap: 4mm; }
+  .cover .qr-block img { width: 26mm; height: 26mm; border: 0.4mm solid #000; }
+  .cover .qr-caption p { font-size: 3.1mm; font-weight: 700; margin-bottom: 1mm; }
+  .cover .qr-caption span { font-family: 'Archivo', monospace; font-size: 2.7mm; opacity: 0.8; }
+
+  /* ── BACK COVER ───────────────────────────────────────────── */
+  .back .content { align-items: center; text-align: center; }
+  .back .ascii-wrap {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+  .back .ascii {
+    font-family: 'JetBrains Mono', monospace;
+    white-space: pre;
+    font-size: 0.4mm;
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+  .back .wordmark {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 62%;
+    font-weight: 800;
+    font-size: 6mm;
+  }
+  .back .tagline { font-size: 3.3mm; margin-top: 1.5mm; }
+  .back .contact { font-size: 2.7mm; margin-top: 3mm; opacity: 0.7; }
+
+  footer.credit {
+    position: absolute;
+    bottom: 2mm; right: 3mm;
+    font-size: 2mm;
+    opacity: 0.4;
+  }
+</style>
+</head>
+<body>
+  <div class="sheet">
+
+    <!-- ROW 1 (top of sheet) — printed upside down: page4, page3, page2, page1 -->
+    <div class="panel flip" id="page4">
+      <div class="content">
+        <p class="eyebrow">04</p>
+        <h2>Projetos</h2>
+        <ul>
+          <li><strong>CAIRHOS</strong> — ferramenta de saúde usada por reguladores médicos na TRUE.</li>
+          <li><strong>Suite de 6 apps</strong> mobile em produção, Android &amp; iOS.</li>
+          <li><strong>Lino</strong> — 🥇 1º lugar em hackathon (2025).</li>
+          <li><strong>Polymathech</strong> — projeto destaque AGES 2024.</li>
+          <li><strong>Sinos ERP</strong> — sistema completo, do zero.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel flip" id="page3">
+      <div class="content">
+        <p class="eyebrow">03</p>
+        <h2>Experiência</h2>
+        <p style="margin-bottom:3mm"><strong>TRUE — Tecnologia para a vida</strong> (2022–2025)<br />
+        Dev Full-Stack Sênior &amp; Referência Técnica. CI/CD, migração de 6 apps de Xamarin
+        para .NET MAUI, distribuição via Intune MDM.</p>
+        <p><strong>Interanet IT</strong> (2020–2022)<br />
+        Full-Stack em saúde, finanças, educação e energia — Banrisul, Sulgás, Sinos, Aucon.</p>
+      </div>
+    </div>
+
+    <div class="panel flip" id="page2">
+      <div class="content">
+        <p class="eyebrow">02</p>
+        <h2>O que eu faço</h2>
+        <p style="margin-bottom:2.5mm"><strong>Linguagens</strong> — C#, TypeScript, JavaScript, Python</p>
+        <p style="margin-bottom:2.5mm"><strong>Frameworks</strong> — React, Angular, .NET MAUI, ASP.NET Core</p>
+        <p style="margin-bottom:2.5mm"><strong>Mobile</strong> — Android, iOS, Xamarin</p>
+        <p><strong>Cloud</strong> — AWS, Azure, Firebase</p>
+      </div>
+    </div>
+
+    <div class="panel flip" id="page1">
+      <div class="content">
+        <p class="eyebrow">01</p>
+        <h2>Quem sou eu</h2>
+        <p>Engenheiro de Software com 6+ anos construindo sistemas mobile, web e backend
+        para saúde, finanças e energia. Já fui referência técnica, mentor, e a pessoa
+        que resolve o bug às 2h antes do deploy.</p>
+      </div>
+    </div>
+
+    <!-- ROW 2 (bottom of sheet) — printed upright: page5, page6, back cover, front cover -->
+    <div class="panel" id="page5">
+      <div class="content">
+        <p class="eyebrow">05</p>
+        <h2>Curiosidades</h2>
+        <ul>
+          <li>Fiz intercâmbio na Coreia do Sul (HUFS) em 2026.</li>
+          <li>Falo Português, Inglês e um pouco de Japonês.</li>
+          <li>Já venci hackathon e prêmio acadêmico.</li>
+          <li>Meu portfólio tem um retrato em ASCII que reage ao mouse.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" id="page6">
+      <div class="content">
+        <p class="eyebrow">06</p>
+        <h2>Onde me encontrar</h2>
+        <ul>
+          <li>Portfólio — igormarcel.is-a.dev</li>
+          <li>LinkedIn — /in/igormarcelmoreira</li>
+          <li>GitHub — /igormarcelmoreira</li>
+          <li>WhatsApp / Email — na capa</li>
+        </ul>
+        <p class="small" style="margin-top:auto">ou só escaneia o QR da capa 😉</p>
+      </div>
+    </div>
+
+    <div class="panel back" id="backcover">
+      <div class="content">
+        <div class="ascii-wrap"><pre class="ascii" id="ascii-target"></pre></div>
+        <p class="wordmark">IGOR MARCEL<span class="mono">.</span></p>
+        <p class="tagline">Vamos construir alguma coisa.</p>
+        <p class="contact">igor2mxavier@gmail.com — +55 51 99581 6448</p>
+      </div>
+    </div>
+
+    <div class="panel cover" id="frontcover">
+      <div class="content">
+        <div>
+          <p class="headline">IGOR<br />MARCEL</p>
+          <p class="role">Engenheiro de Software</p>
+          <p class="oneliner">Construo produtos web, mobile e backend — e às vezes falo demais sobre eles.</p>
+        </div>
+        <div class="qr-block">
+          <img src="qrcode.png" alt="QR code para o card de contato" />
+          <div class="qr-caption">
+            <p>Escaneia pra salvar<br />meu contato</p>
+            <span>igormarcel.is-a.dev/card</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    fetch('../ascii-art.txt').then(r => r.text()).then(txt => {
+      const lines = txt.replace(/\r/g, '').split('\n').filter(l => l.trim().length);
+      document.getElementById('ascii-target').textContent = lines.join('\n');
+    });
+  </script>
+</body>
+</html>
