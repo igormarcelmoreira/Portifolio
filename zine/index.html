@@ -127,65 +127,32 @@
 <body>
   <div class="sheet">
 
-    <!-- ROW 1 (top of sheet) — printed upside down: page4, page3, page2, page1 -->
-    <div class="panel" id="page4">
+    <!-- Panels are in reverse of the original order (whole sheet turned 180°):
+         top row = front cover, back cover, page 6, page 5 (each rotated);
+         bottom row = page 1, 2, 3, 4 (upright) -->
+    <div class="panel cover flip" id="frontcover">
       <div class="content">
-        <p class="eyebrow">04</p>
-        <h2>Projetos</h2>
-        <ul>
-          <li><strong>CAIRHOS</strong> — ferramenta de saúde usada por reguladores médicos na TRUE.</li>
-          <li><strong>Suite de 6 apps</strong> mobile em produção, Android &amp; iOS.</li>
-          <li><strong>Lino</strong> — 🥇 1º lugar em hackathon (2025).</li>
-          <li><strong>Polymathech</strong> — projeto destaque AGES 2024.</li>
-          <li><strong>Sinos ERP</strong> — sistema completo, do zero.</li>
-        </ul>
+        <div>
+          <p class="headline">IGOR<br />MARCEL</p>
+          <p class="role">Engenheiro de Software</p>
+          <p class="oneliner">Construo produtos web, mobile e backend — e às vezes falo demais sobre eles.</p>
+        </div>
+        <div class="qr-block">
+          <img src="qrcode.png" alt="QR code para o card de contato" />
+          <div class="qr-caption">
+            <p>Escaneia pra salvar<br />meu contato</p>
+            <span>igormarcel.is-a.dev/card</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="panel" id="page3">
+    <div class="panel back flip" id="backcover">
       <div class="content">
-        <p class="eyebrow">03</p>
-        <h2>Experiência</h2>
-        <p style="margin-bottom:3mm"><strong>TRUE — Tecnologia para a vida</strong> (2022–2025)<br />
-        Dev Full-Stack Sênior &amp; Referência Técnica. CI/CD, migração de 6 apps de Xamarin
-        para .NET MAUI, distribuição via Intune MDM.</p>
-        <p><strong>Interanet IT</strong> (2020–2022)<br />
-        Full-Stack em saúde, finanças, educação e energia — Banrisul, Sulgás, Sinos, Aucon.</p>
-      </div>
-    </div>
-
-    <div class="panel" id="page2">
-      <div class="content">
-        <p class="eyebrow">02</p>
-        <h2>O que eu faço</h2>
-        <p style="margin-bottom:2.5mm"><strong>Linguagens</strong> — C#, TypeScript, JavaScript, Python</p>
-        <p style="margin-bottom:2.5mm"><strong>Frameworks</strong> — React, Angular, .NET MAUI, ASP.NET Core</p>
-        <p style="margin-bottom:2.5mm"><strong>Mobile</strong> — Android, iOS, Xamarin</p>
-        <p><strong>Cloud</strong> — AWS, Azure, Firebase</p>
-      </div>
-    </div>
-
-    <div class="panel" id="page1">
-      <div class="content">
-        <p class="eyebrow">01</p>
-        <h2>Quem sou eu</h2>
-        <p>Engenheiro de Software com 6+ anos construindo sistemas mobile, web e backend
-        para saúde, finanças e energia. Já fui referência técnica, mentor, e a pessoa
-        que resolve o bug às 2h antes do deploy.</p>
-      </div>
-    </div>
-
-    <!-- ROW 2 (bottom of sheet) — printed upright: page5, page6, back cover, front cover -->
-    <div class="panel flip" id="page5">
-      <div class="content">
-        <p class="eyebrow">05</p>
-        <h2>Curiosidades</h2>
-        <ul>
-          <li>Fiz intercâmbio na Coreia do Sul (HUFS) em 2026.</li>
-          <li>Falo Português, Inglês e um pouco de Japonês.</li>
-          <li>Já venci hackathon e prêmio acadêmico.</li>
-          <li>Meu portfólio tem um retrato em ASCII que reage ao mouse.</li>
-        </ul>
+        <div class="ascii-wrap"><pre class="ascii" id="ascii-target"></pre></div>
+        <p class="wordmark">IGOR MARCEL<span class="mono">.</span></p>
+        <p class="tagline">Vamos construir alguma coisa.</p>
+        <p class="contact">igor2mxavier@gmail.com — +55 51 99581 6448</p>
       </div>
     </div>
 
@@ -204,29 +171,63 @@
       </div>
     </div>
 
-    <div class="panel back flip" id="backcover">
+    <div class="panel flip" id="page5">
       <div class="content">
-        <div class="ascii-wrap"><pre class="ascii" id="ascii-target"></pre></div>
-        <p class="wordmark">IGOR MARCEL<span class="mono">.</span></p>
-        <p class="tagline">Vamos construir alguma coisa.</p>
-        <p class="contact">igor2mxavier@gmail.com — +55 51 99581 6448</p>
+        <p class="eyebrow">05</p>
+        <h2>Curiosidades</h2>
+        <ul>
+          <li>Fiz intercâmbio na Coreia do Sul (HUFS) em 2026.</li>
+          <li>Falo Português, Inglês e um pouco de Japonês.</li>
+          <li>Já venci hackathon e prêmio acadêmico.</li>
+          <li>Meu portfólio tem um retrato em ASCII que reage ao mouse.</li>
+        </ul>
       </div>
     </div>
 
-    <div class="panel cover flip" id="frontcover">
+    <div class="panel" id="page1">
       <div class="content">
-        <div>
-          <p class="headline">IGOR<br />MARCEL</p>
-          <p class="role">Engenheiro de Software</p>
-          <p class="oneliner">Construo produtos web, mobile e backend — e às vezes falo demais sobre eles.</p>
-        </div>
-        <div class="qr-block">
-          <img src="qrcode.png" alt="QR code para o card de contato" />
-          <div class="qr-caption">
-            <p>Escaneia pra salvar<br />meu contato</p>
-            <span>igormarcel.is-a.dev/card</span>
-          </div>
-        </div>
+        <p class="eyebrow">01</p>
+        <h2>Quem sou eu</h2>
+        <p>Engenheiro de Software com 6+ anos construindo sistemas mobile, web e backend
+        para saúde, finanças e energia. Já fui referência técnica, mentor, e a pessoa
+        que resolve o bug às 2h antes do deploy.</p>
+      </div>
+    </div>
+
+    <div class="panel" id="page2">
+      <div class="content">
+        <p class="eyebrow">02</p>
+        <h2>O que eu faço</h2>
+        <p style="margin-bottom:2.5mm"><strong>Linguagens</strong> — C#, TypeScript, JavaScript, Python</p>
+        <p style="margin-bottom:2.5mm"><strong>Frameworks</strong> — React, Angular, .NET MAUI, ASP.NET Core</p>
+        <p style="margin-bottom:2.5mm"><strong>Mobile</strong> — Android, iOS, Xamarin</p>
+        <p><strong>Cloud</strong> — AWS, Azure, Firebase</p>
+      </div>
+    </div>
+
+    <div class="panel" id="page3">
+      <div class="content">
+        <p class="eyebrow">03</p>
+        <h2>Experiência</h2>
+        <p style="margin-bottom:3mm"><strong>TRUE — Tecnologia para a vida</strong> (2022–2025)<br />
+        Dev Full-Stack Sênior &amp; Referência Técnica. CI/CD, migração de 6 apps de Xamarin
+        para .NET MAUI, distribuição via Intune MDM.</p>
+        <p><strong>Interanet IT</strong> (2020–2022)<br />
+        Full-Stack em saúde, finanças, educação e energia — Banrisul, Sulgás, Sinos, Aucon.</p>
+      </div>
+    </div>
+
+    <div class="panel" id="page4">
+      <div class="content">
+        <p class="eyebrow">04</p>
+        <h2>Projetos</h2>
+        <ul>
+          <li><strong>CAIRHOS</strong> — ferramenta de saúde usada por reguladores médicos na TRUE.</li>
+          <li><strong>Suite de 6 apps</strong> mobile em produção, Android &amp; iOS.</li>
+          <li><strong>Lino</strong> — 🥇 1º lugar em hackathon (2025).</li>
+          <li><strong>Polymathech</strong> — projeto destaque AGES 2024.</li>
+          <li><strong>Sinos ERP</strong> — sistema completo, do zero.</li>
+        </ul>
       </div>
     </div>
 
