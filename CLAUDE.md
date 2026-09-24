@@ -78,9 +78,10 @@ CLAUDE.md         — this file
 
 ### 2026-09-22 — Printable networking zine (`zine/`)
 - One-page, 8-panel zine (A4 landscape, 297×210mm) following the classic single-sheet
-  fold-and-cut zine layout, then the whole sheet turned 180° (2026-09-24): one CSS grid whose
-  top row = front cover, back cover, page 6, page 5 (each rotated 180° via `.flip`) and bottom row =
-  pages 1, 2, 3, 4 (upright). The DOM order of the panels in `zine/index.html` IS the grid order.
+  fold-and-cut zine layout, adapted by the user (2026-09-24): one CSS grid, DOM order = grid order.
+  Top row upright: page 3, 4, 5, 6. Bottom row rotated 180° (`.flip`): page 2, page 1, front cover,
+  back cover. Rotation belongs to the slot, not the page; pages sit where their mirror partner was
+  (cover↔back, 1↔6, 2↔5, 3↔4). Don't "fix" this to the textbook template — it's intentional.
 - Black-on-white only (this is meant to be photocopier/home-printer friendly); reuses the
   site's Archivo/Instrument Sans type and the hero's `ascii-art.txt` portrait (rendered small,
   monospace, on the back cover) to keep the print piece visually tied to the site and card.

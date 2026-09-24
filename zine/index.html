@@ -127,84 +127,9 @@
 <body>
   <div class="sheet">
 
-    <!-- Panels are in reverse of the original order (whole sheet turned 180°):
-         top row = front cover, back cover, page 6, page 5 (each rotated);
-         bottom row = page 1, 2, 3, 4 (upright) -->
-    <div class="panel cover flip" id="frontcover">
-      <div class="content">
-        <div>
-          <p class="headline">IGOR<br />MARCEL</p>
-          <p class="role">Engenheiro de Software</p>
-          <p class="oneliner">Construo produtos web, mobile e backend — e às vezes falo demais sobre eles.</p>
-        </div>
-        <div class="qr-block">
-          <img src="qrcode.png" alt="QR code para o card de contato" />
-          <div class="qr-caption">
-            <p>Escaneia pra salvar<br />meu contato</p>
-            <span>igormarcel.is-a.dev/card</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="panel back flip" id="backcover">
-      <div class="content">
-        <div class="ascii-wrap"><pre class="ascii" id="ascii-target"></pre></div>
-        <p class="wordmark">IGOR MARCEL<span class="mono">.</span></p>
-        <p class="tagline">Vamos construir alguma coisa.</p>
-        <p class="contact">igor2mxavier@gmail.com — +55 51 99581 6448</p>
-      </div>
-    </div>
-
-    <div class="panel flip" id="page6">
-      <div class="content">
-        <p class="eyebrow">06</p>
-        <h2>Onde me encontrar</h2>
-        <ul>
-          <li>Portfólio — igormarcel.is-a.dev</li>
-          <li>LinkedIn — /igormarcelmoreira</li>
-          <li>GitHub — /igormarcelmoreira</li>
-          <li>Instagram — @igormarcel.dev</li>
-          <li>WhatsApp / Email — +55 51 99581 6448 - igor2mxavier@gmail.com </li>
-        </ul>
-        <p class="small" style="margin-top:auto">ou só escaneia o QR da capa 😉</p>
-      </div>
-    </div>
-
-    <div class="panel flip" id="page5">
-      <div class="content">
-        <p class="eyebrow">05</p>
-        <h2>Curiosidades</h2>
-        <ul>
-          <li>Fiz intercâmbio na Coreia do Sul (HUFS) em 2026.</li>
-          <li>Falo Português, Inglês e um pouco de Japonês.</li>
-          <li>Já venci hackathon e prêmio acadêmico.</li>
-          <li>Meu portfólio tem um retrato em ASCII que reage ao mouse.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="panel" id="page1">
-      <div class="content">
-        <p class="eyebrow">01</p>
-        <h2>Quem sou eu</h2>
-        <p>Engenheiro de Software com 6+ anos construindo sistemas mobile, web e backend
-        para saúde, finanças e energia. Já fui referência técnica, mentor, e a pessoa
-        que resolve o bug às 2h antes do deploy.</p>
-      </div>
-    </div>
-
-    <div class="panel" id="page2">
-      <div class="content">
-        <p class="eyebrow">02</p>
-        <h2>O que eu faço</h2>
-        <p style="margin-bottom:2.5mm"><strong>Linguagens</strong> — C#, TypeScript, JavaScript, Python</p>
-        <p style="margin-bottom:2.5mm"><strong>Frameworks</strong> — React, Angular, .NET MAUI, ASP.NET Core</p>
-        <p style="margin-bottom:2.5mm"><strong>Mobile</strong> — Android, iOS, Xamarin</p>
-        <p><strong>Cloud</strong> — AWS, Azure, Firebase</p>
-      </div>
-    </div>
-
+    <!-- Slot order (left→right). Top row upright: page 3, 4, 5, 6.
+         Bottom row rotated 180° (.flip): page 2, page 1, front cover, back cover.
+         Each page sits where its mirror partner was (cover↔back, 1↔6, 2↔5, 3↔4). -->
     <div class="panel" id="page3">
       <div class="content">
         <p class="eyebrow">03</p>
@@ -228,6 +153,81 @@
           <li><strong>Polymathech</strong> — projeto destaque AGES 2024.</li>
           <li><strong>Sinos ERP</strong> — sistema completo, do zero.</li>
         </ul>
+      </div>
+    </div>
+
+    <div class="panel" id="page5">
+      <div class="content">
+        <p class="eyebrow">05</p>
+        <h2>Curiosidades</h2>
+        <ul>
+          <li>Fiz intercâmbio na Coreia do Sul (HUFS) em 2026.</li>
+          <li>Falo Português, Inglês e um pouco de Japonês.</li>
+          <li>Já venci hackathon e prêmio acadêmico.</li>
+          <li>Meu portfólio tem um retrato em ASCII que reage ao mouse.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" id="page6">
+      <div class="content">
+        <p class="eyebrow">06</p>
+        <h2>Onde me encontrar</h2>
+        <ul>
+          <li>Portfólio — igormarcel.is-a.dev</li>
+          <li>LinkedIn — /igormarcelmoreira</li>
+          <li>GitHub — /igormarcelmoreira</li>
+          <li>Instagram — @igormarcel.dev</li>
+          <li>WhatsApp / Email — +55 51 99581 6448 - igor2mxavier@gmail.com </li>
+        </ul>
+        <p class="small" style="margin-top:auto">ou só escaneia o QR da capa 😉</p>
+      </div>
+    </div>
+
+    <div class="panel flip" id="page2">
+      <div class="content">
+        <p class="eyebrow">02</p>
+        <h2>O que eu faço</h2>
+        <p style="margin-bottom:2.5mm"><strong>Linguagens</strong> — C#, TypeScript, JavaScript, Python</p>
+        <p style="margin-bottom:2.5mm"><strong>Frameworks</strong> — React, Angular, .NET MAUI, ASP.NET Core</p>
+        <p style="margin-bottom:2.5mm"><strong>Mobile</strong> — Android, iOS, Xamarin</p>
+        <p><strong>Cloud</strong> — AWS, Azure, Firebase</p>
+      </div>
+    </div>
+
+    <div class="panel flip" id="page1">
+      <div class="content">
+        <p class="eyebrow">01</p>
+        <h2>Quem sou eu</h2>
+        <p>Engenheiro de Software com 6+ anos construindo sistemas mobile, web e backend
+        para saúde, finanças e energia. Já fui referência técnica, mentor, e a pessoa
+        que resolve o bug às 2h antes do deploy.</p>
+      </div>
+    </div>
+
+    <div class="panel cover flip" id="frontcover">
+      <div class="content">
+        <div>
+          <p class="headline">IGOR<br />MARCEL</p>
+          <p class="role">Engenheiro de Software</p>
+          <p class="oneliner">Construo produtos web, mobile e backend — e às vezes falo demais sobre eles.</p>
+        </div>
+        <div class="qr-block">
+          <img src="qrcode.png" alt="QR code para o card de contato" />
+          <div class="qr-caption">
+            <p>Escaneia pra salvar<br />meu contato</p>
+            <span>igormarcel.is-a.dev/card</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel back flip" id="backcover">
+      <div class="content">
+        <div class="ascii-wrap"><pre class="ascii" id="ascii-target"></pre></div>
+        <p class="wordmark">IGOR MARCEL<span class="mono">.</span></p>
+        <p class="tagline">Vamos construir alguma coisa.</p>
+        <p class="contact">igor2mxavier@gmail.com — +55 51 99581 6448</p>
       </div>
     </div>
 
