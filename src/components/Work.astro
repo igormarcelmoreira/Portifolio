@@ -65,7 +65,7 @@ const icons = [
               <p class="preview__word display">{p.name}</p>
             </>
           )}
-          <p class="preview__kind">{p.hideKind ? "" : p.kind}</p>
+          <p class="preview__kind">{p.kind}</p>
         </div>
       ))}
     </div>
@@ -182,6 +182,7 @@ const icons = [
   .preview__icon { width: 76px; height: 76px; border-radius: 24%; object-fit: cover; }
   .preview__icon + .preview__word { font-size: 3rem; margin-top: auto; }
   .preview__kind { font-size: 0.85rem; color: var(--bone-dim); }
-  .preview__icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-  .preview__icons img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 22%; background: var(--bone); }
+  /* fixed size so two rows of icons leave room for the label under them */
+  .preview__icons { display: grid; grid-template-columns: repeat(3, 56px); gap: 0.55rem; }
+  .preview__icons img { width: 56px; height: 56px; object-fit: cover; border-radius: 24%; background: var(--bone); }
 </style>
