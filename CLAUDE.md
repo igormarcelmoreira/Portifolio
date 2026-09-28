@@ -32,8 +32,8 @@ src/scripts/portrait.ts — ascii-art.txt → instanced 3D glyph relief (Three.j
 src/styles/global.css   — tokens, type helpers, pill button, motion baseline
 public/                 — copied as-is to the site root:
   CNAME, favicon.svg, ascii-art.txt, assets/crosshair.svg
-  icons/                — 256px webp app/project icons (6 TRUE apps + saph-web, lino,
-                          polymathech, cp-planta). Originals live in gitignored _raw/icons/.
+  icons/                — 256px webp app/project icons (6 TRUE apps + saph-web, sinos-erp,
+                          lino, polymathech, cp-planta). Originals live in gitignored _raw/icons/.
   card/                 — /card/ business card (plain HTML/CSS, untouched by Astro). QR codes
                           printed on the zine point here: never move or rename this route.
 zine/                   — printable zine, NOT part of the site build (see changelog). Its
@@ -96,7 +96,7 @@ zine/                   — printable zine, NOT part of the site build (see chan
   (the icons now appear in the work preview / active mobile row).
 - Old `index.html`, `css/`, `js/` removed; static assets moved to `public/` (card/ keeps its URL).
 - Deploy switched from "Pages from branch root" to the GitHub Actions workflow.
-- Project icons added (SAPH Web, Lino, Polymathech, CP-Planta); CAIRHOS renamed to SAPH Web on the site.
+- Project icons added (SAPH Web, Sinos ERP, Lino, Polymathech, CP-Planta); CAIRHOS renamed to SAPH Web on the site.
 
 ### 2026-09-22 — Printable networking zine (`zine/`)
 - One-page, 8-panel zine (A4 landscape, 297×210mm) following the classic single-sheet

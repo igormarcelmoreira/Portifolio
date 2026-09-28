@@ -115,6 +115,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'Sinos ERP',
+          icon: 'sinos-erp.webp',
           kind: 'ERP from scratch',
           year: '2021',
           summary: 'Finance, inventory and operations for Sinos Tecnologia, designed and built end to end.',
@@ -272,6 +273,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'Sinos ERP',
+          icon: 'sinos-erp.webp',
           kind: 'ERP do zero',
           year: '2021',
           summary: 'Finanças, estoque e operação da Sinos Tecnologia, projetado e construído de ponta a ponta.',
