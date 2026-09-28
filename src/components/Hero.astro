@@ -9,7 +9,12 @@ const { t } = Astro.props;
       <pre class="hero__ascii" id="hero-ascii" aria-hidden="true"></pre>
     </div>
     <!-- iOS only: motion sensors need a tap before Safari hands them out (portrait.ts un-hides this) -->
-    <button class="hero__tilt" type="button" data-tilt hidden>{t.hero.tilt}</button>
+    <button class="hero__tilt" type="button" data-tilt hidden>
+      <span class="hero__tilt-phone" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6.5" y="2" width="11" height="20" rx="2.5" /><path d="M11 18.5h2" /></svg>
+      </span>
+      {t.hero.tilt}
+    </button>
   </div>
 
   <div class="hero__meta wrap">
@@ -52,14 +57,34 @@ const { t } = Astro.props;
     top: 0.5rem;
     right: 0;
     z-index: 3;
-    padding: 0.45rem 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.5rem 0.95rem 0.5rem 0.75rem;
     border-radius: 999px;
     background: var(--bone);
     color: var(--ink);
     font-size: 0.8rem;
     font-weight: 600;
+    animation: tilt-ring 2s ease-out infinite;
   }
   .hero__tilt[hidden] { display: none; }
+  .hero__tilt-phone { display: flex; }
+  .hero__tilt-phone svg {
+    width: 16px;
+    height: 16px;
+    transform-origin: 50% 80%;
+    animation: tilt-rock 1.6s ease-in-out infinite;
+  }
+  /* a ring pulses out of the button while the phone glyph rocks: "tap me, then tilt" */
+  @keyframes tilt-ring {
+    0% { box-shadow: 0 0 0 0 rgba(241, 236, 230, 0.75); }
+    70%, 100% { box-shadow: 0 0 0 0.9rem rgba(241, 236, 230, 0); }
+  }
+  @keyframes tilt-rock {
+    0%, 100% { transform: rotate(-18deg); }
+    50% { transform: rotate(18deg); }
+  }
   :global(.hero__canvas) { width: 100%; }
 
   .hero__meta {
@@ -102,16 +127,37 @@ const { t } = Astro.props;
     color: var(--bone);
   }
 
+  /* phones: the whole hero fits one screen. Text and name keep their size; the portrait
+     takes whatever height is left (big on tall phones, smaller on short ones). */
   @media (max-width: 760px) {
     .hero {
-      height: auto;
-      min-height: 100svh;
+      height: 100svh;
+      min-height: 560px; /* tiny screens scroll rather than crush the portrait */
       display: flex;
       flex-direction: column;
-      padding-top: 5rem;
+      padding-top: 4.25rem;
     }
-    .hero__portrait { position: relative; right: auto; bottom: auto; width: 88vw; align-self: center; }
-    .hero__meta { position: relative; bottom: auto; max-width: none; padding-block: 2rem 1.5rem; }
-    .hero__name { position: relative; bottom: auto; margin-top: auto; margin-bottom: -0.085em; }
+    .hero__portrait {
+      position: relative;
+      right: auto;
+      bottom: auto;
+      flex: 1 1 0;
+      min-height: 0;
+      width: 100%;
+    }
+    .hero__portrait > [data-speed] { height: 100%; }
+    .hero__portrait :global(.hero__canvas) { width: 100%; height: 100%; aspect-ratio: auto !important; }
+    .hero__ascii { height: 100%; overflow: hidden; display: flex; justify-content: center; }
+    .hero__tilt { right: var(--gutter); }
+    .hero__meta {
+      position: relative;
+      bottom: auto;
+      flex: 0 0 auto;
+      max-width: none;
+      padding-block: 1rem 0.9rem;
+      gap: 1.1rem;
+    }
+    .hero__intro { font-size: 1.25rem; }
+    .hero__name { position: relative; bottom: auto; flex: 0 0 auto; margin-bottom: -0.085em; }
   }
 </style>

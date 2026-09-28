@@ -179,14 +179,18 @@ async function build(pre: HTMLElement, text: string, reduce: boolean) {
       const btn = document.querySelector<HTMLButtonElement>('[data-tilt]');
       if (!btn) return;
       btn.hidden = false;
-      btn.addEventListener(
-        'click',
-        async () => {
-          try { await DOE.requestPermission!(); } catch {}
-          btn.hidden = true; // the listener above is already attached; readings start once granted
-        },
-        { once: true },
-      );
+      // the button or a tap on the portrait itself: either counts as the gesture iOS wants
+      const portrait = canvas.closest('.hero__portrait');
+      let asked = false;
+      const ask = async () => {
+        if (asked) return;
+        asked = true;
+        portrait?.removeEventListener('click', ask);
+        try { await DOE.requestPermission!(); } catch {}
+        btn.hidden = true; // the listener above is already attached; readings start once granted
+      };
+      btn.addEventListener('click', ask);
+      portrait?.addEventListener('click', ask);
     }, 1000);
   }
 
