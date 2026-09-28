@@ -34,6 +34,11 @@ const icons = [
                   {icons.map(([src, alt]) => <img src={`/icons/${src}`} alt={alt} loading="lazy" width="52" height="52" />)}
                 </span>
               )}
+              {p.icon && (
+                <span class="row__icons">
+                  <img src={`/icons/${p.icon}`} alt={p.name} loading="lazy" width="52" height="52" />
+                </span>
+              )}
               {p.linkLabel && <span class="row__via">{p.linkLabel} ↗</span>}
             </span>
           </span>
@@ -55,7 +60,10 @@ const icons = [
               {icons.map(([src, alt]) => <img src={`/icons/${src}`} alt={alt} loading="lazy" width="88" height="88" />)}
             </div>
           ) : (
-            <p class="preview__word display">{p.name}</p>
+            <>
+              {p.icon && <img class="preview__icon" src={`/icons/${p.icon}`} alt="" loading="lazy" width="96" height="96" />}
+              <p class="preview__word display">{p.name}</p>
+            </>
           )}
           <p class="preview__kind">{p.kind}</p>
         </div>
@@ -166,6 +174,8 @@ const icons = [
     padding: 1.1rem 1.2rem;
   }
   .preview__word { font-size: 4.2rem; line-height: 0.85; word-break: break-word; }
+  .preview__icon { width: 76px; height: 76px; border-radius: 24%; object-fit: cover; }
+  .preview__icon + .preview__word { font-size: 3rem; margin-top: auto; }
   .preview__kind { font-size: 0.85rem; color: var(--bone-dim); }
   .preview__icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
   .preview__icons img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 22%; background: var(--bone); }

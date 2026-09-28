@@ -31,7 +31,9 @@ src/scripts/motion.ts   — every GSAP animation + clock + language memory + Git
 src/scripts/portrait.ts — ascii-art.txt → instanced 3D glyph relief (Three.js)
 src/styles/global.css   — tokens, type helpers, pill button, motion baseline
 public/                 — copied as-is to the site root:
-  CNAME, favicon.svg, ascii-art.txt, icons/ (TRUE app icons), assets/crosshair.svg
+  CNAME, favicon.svg, ascii-art.txt, assets/crosshair.svg
+  icons/                — 256px webp app/project icons (6 TRUE apps + saph-web, lino,
+                          polymathech, cp-planta). Originals live in gitignored _raw/icons/.
   card/                 — /card/ business card (plain HTML/CSS, untouched by Astro). QR codes
                           printed on the zine point here: never move or rename this route.
 zine/                   — printable zine, NOT part of the site build (see changelog). Its
@@ -60,9 +62,12 @@ zine/                   — printable zine, NOT part of the site build (see chan
 - Loader counter + curtain only on the first visit per session (`sessionStorage['intro-seen']`).
 - SplitText: hero name chars, `[data-split-lines]` headings, `[data-split-chars]` contact title,
   `[data-scrub-words]` manifesto (scrubbed opacity), project names in the work rows.
-- Work rows: desktop = hover fill + floating tilted preview + cursor "Open"; touch/narrow = the
-  row crossing 58% of the screen gets `.is-active` (fill + app-icon pop). Do NOT animate row
-  heights on touch — it desyncs ScrollTrigger and shifts content under the thumb.
+- Work rows: desktop = hover fill + floating tilted preview (project `icon`/`icons` + name) +
+  cursor "Open". Touch/narrow = the row crossing 58% of the screen (picked from LIVE rects, not
+  precomputed triggers, because rows change height) gets `.is-active` (red fill); a row that
+  becomes active also gets `.is-open` (description unfolds, icons pop) and stays open, so rows
+  above never collapse under the thumb. `ScrollTrigger.refresh()` runs on scrollEnd after a row opens.
+- Project icons: `icon` (single file in public/icons) or `icons: true` (the 6-app suite) in content.ts.
 - Portrait is built ~1.8s after boot (first visit) in chunks, downsampled 2× under 900px wide.
 - Visibility: `[data-reveal]` etc. are hidden only under `html.js:not(.reduce)`. A 6s safety
   timer in `<head>` adds `.reduce` if motion never boots; reduced-motion users get a static page.
@@ -71,7 +76,7 @@ zine/                   — printable zine, NOT part of the site build (see chan
 1. Hero — giant name, 3D ASCII portrait, one-line pitch, availability, CTA
 2. Manifesto — scrubbed paragraph
 3. Services — web platforms, mobile apps, AI & automation, technical leadership
-4. Selected work — 6 project rows with links
+4. Selected work — 6 project rows with links (SAPH Web — formerly listed as CAIRHOS —, mobile suite, Sinos ERP, Lino, Polymathech, CP-Planta)
 5. Numbers — 4 counters
 6. About — bio, jobs (TRUE, Interanet), education, languages
 7. Stack — velocity-reactive marquee
@@ -91,6 +96,7 @@ zine/                   — printable zine, NOT part of the site build (see chan
   (the icons now appear in the work preview / active mobile row).
 - Old `index.html`, `css/`, `js/` removed; static assets moved to `public/` (card/ keeps its URL).
 - Deploy switched from "Pages from branch root" to the GitHub Actions workflow.
+- Project icons added (SAPH Web, Lino, Polymathech, CP-Planta); CAIRHOS renamed to SAPH Web on the site.
 
 ### 2026-09-22 — Printable networking zine (`zine/`)
 - One-page, 8-panel zine (A4 landscape, 297×210mm) following the classic single-sheet

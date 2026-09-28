@@ -9,6 +9,7 @@ export interface Project {
   href?: string;
   linkLabel?: string;
   icons?: boolean;
+  icon?: string;
 }
 
 export interface Content {
@@ -93,7 +94,8 @@ export const content: Record<Lang, Content> = {
       github: 'Latest on GitHub',
       projects: [
         {
-          name: 'CAIRHOS',
+          name: 'SAPH Web',
+          icon: 'saph-web.webp',
           kind: 'Healthcare web platform',
           year: '2023–2025',
           summary: 'Real-time view of healthcare facility availability for medical regulators. I led development and the team shipping it at TRUE.',
@@ -122,6 +124,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'Lino',
+          icon: 'lino.webp',
           kind: 'Hackathon, 1st place',
           year: '2025',
           summary: 'Front-end lead: the whole interface in React and TypeScript under hackathon time, plus the integration with the back end.',
@@ -131,6 +134,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'Polymathech',
+          icon: 'polymathech.webp',
           kind: 'Highlight award, AGES',
           year: '2024',
           summary: 'Study and career-guidance platform. Front-end reference for the team, owning code standards and tooling.',
@@ -140,6 +144,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'CP-Planta',
+          icon: 'cp-planta.webp',
           kind: 'Data architecture',
           year: '2024',
           summary: 'Front end in React plus the data model and API contracts behind it.',
@@ -246,7 +251,8 @@ export const content: Record<Lang, Content> = {
       github: 'Último no GitHub',
       projects: [
         {
-          name: 'CAIRHOS',
+          name: 'SAPH Web',
+          icon: 'saph-web.webp',
           kind: 'Plataforma web de saúde',
           year: '2023–2025',
           summary: 'Disponibilidade de unidades de saúde em tempo real para reguladores médicos. Liderei o desenvolvimento e o time na TRUE.',
@@ -275,6 +281,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'Lino',
+          icon: 'lino.webp',
           kind: 'Hackathon, 1º lugar',
           year: '2025',
           summary: 'Líder de front-end: a interface inteira em React e TypeScript no tempo de hackathon, mais a integração com o back-end.',
@@ -284,6 +291,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'Polymathech',
+          icon: 'polymathech.webp',
           kind: 'Projeto destaque, AGES',
           year: '2024',
           summary: 'Plataforma de estudos e orientação vocacional. Referência de front-end do time, cuidando de padrões e ferramentas.',
@@ -293,6 +301,7 @@ export const content: Record<Lang, Content> = {
         },
         {
           name: 'CP-Planta',
+          icon: 'cp-planta.webp',
           kind: 'Arquitetura de dados',
           year: '2024',
           summary: 'Front-end em React e o modelo de dados e contratos de API por trás dele.',
