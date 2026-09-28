@@ -8,6 +8,8 @@ const { t } = Astro.props;
     <div data-speed="0.82">
       <pre class="hero__ascii" id="hero-ascii" aria-hidden="true"></pre>
     </div>
+    <!-- iOS only: motion sensors need a tap before Safari hands them out (portrait.ts un-hides this) -->
+    <button class="hero__tilt" type="button" data-tilt hidden>{t.hero.tilt}</button>
   </div>
 
   <div class="hero__meta wrap">
@@ -45,6 +47,19 @@ const { t } = Astro.props;
     user-select: none;
   }
   .hero__ascii.is-3d { display: none; }
+  .hero__tilt {
+    position: absolute;
+    top: 0.5rem;
+    right: 0;
+    z-index: 3;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: var(--bone);
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+  .hero__tilt[hidden] { display: none; }
   :global(.hero__canvas) { width: 100%; }
 
   .hero__meta {

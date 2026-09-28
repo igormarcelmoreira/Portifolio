@@ -71,6 +71,12 @@ zine/                   — printable zine, NOT part of the site build (see chan
   above never collapse under the thumb. `ScrollTrigger.refresh()` runs on scrollEnd after a row opens.
 - Project icons: `icon` (single file in public/icons) or `icons: true` (the 6-app suite) in content.ts.
 - Portrait is built ~1.8s after boot (first visit) in chunks, downsampled 2× under 900px wide.
+- Portrait input: mouse position on desktop. On coarse pointers it follows `deviceorientation`
+  (first reading = neutral, neutral drifts toward the current grip). Android sends readings
+  without asking; iOS needs `DeviceOrientationEvent.requestPermission()` from a tap, so the
+  `[data-tilt]` button ("Incline o celular") appears only if no reading arrived within 1s and the
+  permission API exists. With no sensor, touch tilts it and it eases back to rest on
+  pointerup/pointercancel. Idle sway only runs when the sensor isn't driving it.
 - Visibility: `[data-reveal]` etc. are hidden only under `html.js:not(.reduce)`. A 6s safety
   timer in `<head>` adds `.reduce` if motion never boots; reduced-motion users get a static page.
 

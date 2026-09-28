@@ -126,9 +126,11 @@ async function build(pre: HTMLElement, text: string, reduce: boolean) {
   }
 
   let targetYaw = 0, targetPitch = 0, lastMove = -Infinity;
+  let gyro = false; // once the device's tilt drives the portrait, touch and idle sway step aside
   window.addEventListener(
     'pointermove',
     (e) => {
+      if (gyro && e.pointerType !== 'mouse') return;
       targetYaw = (e.clientX / window.innerWidth - 0.5) * 2 * 0.55;
       targetPitch = (e.clientY / window.innerHeight - 0.5) * 2 * 0.3;
       lastMove = performance.now();
@@ -137,13 +139,56 @@ async function build(pre: HTMLElement, text: string, reduce: boolean) {
   );
   // touch: once the finger lifts (or the touch turns into a page scroll), ease back to rest
   const release = (e: PointerEvent) => {
-    if (e.pointerType === 'mouse') return;
+    if (e.pointerType === 'mouse' || gyro) return;
     targetYaw = 0;
     targetPitch = 0;
     lastMove = performance.now();
   };
   window.addEventListener('pointerup', release, { passive: true });
   window.addEventListener('pointercancel', release, { passive: true });
+
+  if (!reduce && matchMedia('(pointer: coarse)').matches && 'DeviceOrientationEvent' in window) followDeviceTilt();
+
+  // phones: the portrait follows how the device is tilted. The first reading is "straight",
+  // and that neutral slowly drifts toward the current grip so it re-centres on its own.
+  function followDeviceTilt() {
+    const clamp = (v: number) => Math.max(-1, Math.min(1, v));
+    let x0: number | null = null, y0 = 0;
+    const onTilt = (e: DeviceOrientationEvent) => {
+      if (e.beta == null || e.gamma == null) return; // no sensor
+      const angle = screen.orientation?.angle ?? 0;
+      let x = e.gamma, y = e.beta; // portrait
+      if (angle === 90) { x = e.beta; y = -e.gamma; }
+      else if (angle === 270 || angle === -90) { x = -e.beta; y = e.gamma; }
+      if (x0 === null) { x0 = x; y0 = y; }
+      x0 += (x - x0) * 0.008;
+      y0 += (y - y0) * 0.008;
+      gyro = true;
+      targetYaw = clamp((x - x0) / 25) * 0.55;
+      targetPitch = clamp((y - y0) / 25) * 0.3;
+      lastMove = performance.now();
+    };
+    window.addEventListener('deviceorientation', onTilt, { passive: true });
+
+    // Android sends readings right away. iOS stays silent until a tap + system prompt, so only
+    // when nothing has arrived after a second (and the permission API exists) offer the button.
+    const DOE = DeviceOrientationEvent as unknown as { requestPermission?: () => Promise<PermissionState> };
+    if (typeof DOE.requestPermission !== 'function') return;
+    setTimeout(() => {
+      if (gyro) return;
+      const btn = document.querySelector<HTMLButtonElement>('[data-tilt]');
+      if (!btn) return;
+      btn.hidden = false;
+      btn.addEventListener(
+        'click',
+        async () => {
+          try { await DOE.requestPermission!(); } catch {}
+          btn.hidden = true; // the listener above is already attached; readings start once granted
+        },
+        { once: true },
+      );
+    }, 1000);
+  }
 
   const resize = () => {
     const w = canvas.clientWidth, h = canvas.clientHeight;
@@ -162,7 +207,7 @@ async function build(pre: HTMLElement, text: string, reduce: boolean) {
   const tick = () => {
     const t = (performance.now() - start) / 1000;
     let yaw = targetYaw, pitch = targetPitch;
-    if (!reduce && performance.now() - lastMove > 3000) {
+    if (!reduce && !gyro && performance.now() - lastMove > 3000) {
       yaw = Math.sin(t * 0.45) * 0.32;
       pitch = Math.sin(t * 0.3) * 0.08;
     }

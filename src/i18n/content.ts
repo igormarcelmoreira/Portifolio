@@ -18,7 +18,7 @@ export interface Content {
   meta: { title: string; description: string };
   nav: { work: string; services: string; about: string; contact: string; city: string };
   loader: string;
-  hero: { intro: string; status: string; cta: string; scroll: string };
+  hero: { intro: string; status: string; cta: string; scroll: string; tilt: string };
   manifesto: string;
   services: { title: string; lead: string; items: { title: string; body: string; tags: string[] }[] };
   work: { title: string; lead: string; open: string; projects: Project[]; github: string };
@@ -58,6 +58,7 @@ export const content: Record<Lang, Content> = {
       status: 'Taking on new projects',
       cta: 'Start a project',
       scroll: 'Scroll',
+      tilt: 'Tilt your phone',
     },
     manifesto:
       'Six years turning messy requirements into software people depend on. Apps that run inside ambulances, platforms hospitals check in real time, ERPs that run a company, and lately, AI that removes the boring part of someone’s job.',
@@ -216,6 +217,7 @@ export const content: Record<Lang, Content> = {
       status: 'Aceitando novos projetos',
       cta: 'Começar um projeto',
       scroll: 'Role',
+      tilt: 'Incline o celular',
     },
     manifesto:
       'Seis anos transformando requisitos bagunçados em software do qual as pessoas dependem. Apps que rodam dentro de ambulâncias, plataformas que hospitais consultam em tempo real, ERPs que tocam uma empresa, e agora IA que tira a parte chata do trabalho de alguém.',
@@ -374,6 +376,7 @@ export const content: Record<Lang, Content> = {
       status: 'Disponible para nuevos proyectos',
       cta: 'Empezar un proyecto',
       scroll: 'Desliza',
+      tilt: 'Inclina el móvil',
     },
     manifesto:
       'Seis años convirtiendo requisitos desordenados en software del que la gente depende. Apps que funcionan dentro de ambulancias, plataformas que los hospitales consultan en tiempo real, ERPs que mueven una empresa y, ahora, IA que le quita a alguien la parte aburrida de su trabajo.',
