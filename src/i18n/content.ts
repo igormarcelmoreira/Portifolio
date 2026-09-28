@@ -1,4 +1,4 @@
-export type Lang = 'en' | 'pt';
+export type Lang = 'en' | 'pt' | 'es';
 
 export interface Project {
   name: string;
@@ -358,6 +358,165 @@ export const content: Record<Lang, Content> = {
       rights: '© 2026 Igor Marcel',
       built: 'Feito com Astro e GSAP',
       top: 'Voltar ao topo',
+    },
+  },
+
+  es: {
+    lang: 'es',
+    htmlLang: 'es',
+    meta: {
+      title: 'Igor Marcel — Ingeniero de Software',
+      description:
+        'Ingeniero de software que construye plataformas web, apps móviles e IA que llegan a producción. Más de 6 años en salud, finanzas y energía. Desde Porto Alegre, Brasil.',
+    },
+    nav: { work: 'Proyectos', services: 'Servicios', about: 'Sobre mí', contact: 'Contacto', city: 'Porto Alegre' },
+    loader: 'Cargando',
+    hero: {
+      intro: 'Diseño y construyo software que llega a producción: plataformas web, apps móviles e IA que hace trabajo de verdad.',
+      status: 'Disponible para nuevos proyectos',
+      cta: 'Empezar un proyecto',
+      scroll: 'Desliza',
+    },
+    manifesto:
+      'Seis años convirtiendo requisitos desordenados en software del que la gente depende. Apps que funcionan dentro de ambulancias, plataformas que los hospitales consultan en tiempo real, ERPs que mueven una empresa y, ahora, IA que le quita a alguien la parte aburrida de su trabajo.',
+    services: {
+      title: 'Lo que puedo construir para ti',
+      lead: 'Para fundadores que necesitan un producto en el aire y equipos que necesitan un senior de verdad.',
+      items: [
+        {
+          title: 'Plataformas web',
+          body: 'Dashboards, herramientas internas y productos SaaS en React, Angular y .NET, hechos para que el próximo dev pueda seguir sin mí.',
+          tags: ['React', 'Angular', 'ASP.NET Core'],
+        },
+        {
+          title: 'Apps móviles',
+          body: 'Apps Android e iOS desde el primer commit hasta la tienda, con CI/CD y distribución corporativa ya resueltos.',
+          tags: ['.NET MAUI', 'CI/CD', 'Intune MDM'],
+        },
+        {
+          title: 'IA y automatización',
+          body: 'Funcionalidades con LLM, búsqueda sobre tus propios documentos y agentes que eliminan pasos manuales de flujos reales.',
+          tags: ['RAG', 'Agentes', 'Automatización'],
+        },
+        {
+          title: 'Liderazgo técnico',
+          body: 'Arquitectura, estándares de código, revisiones y mentoría para equipos que crecen más rápido que su código.',
+          tags: ['Arquitectura', 'Code review', 'Mentoría'],
+        },
+      ],
+    },
+    work: {
+      title: 'Proyectos seleccionados',
+      lead: 'La mayoría vive detrás del login de una empresa, así que aquí está qué es y dónde funciona.',
+      open: 'Abrir',
+      github: 'Lo último en GitHub',
+      projects: [
+        {
+          name: 'SAPH Web',
+          icon: 'saph-web.webp',
+          kind: 'Plataforma web de salud',
+          year: '2023–2025',
+          summary: 'Disponibilidad de unidades de salud en tiempo real para reguladores médicos. Lideré el desarrollo y el equipo en TRUE.',
+          stack: ['Angular', 'TypeScript', 'ASP.NET Core'],
+          href: 'https://true.com.br/solucoes/cairhos',
+          linkLabel: 'Página del producto',
+        },
+        {
+          name: 'Suite de apps móviles',
+          kind: '6 apps en producción',
+          hideKind: true,
+          year: '2022–2025',
+          summary: 'CHAMAR 192, SAPH Móvel, TRUE PCR, TRUE Checklist, SAPH Gestão y Unimed POA SOS, migradas de Xamarin a .NET MAUI con CI/CD en Android e iOS.',
+          stack: ['.NET MAUI', 'C#', 'GitHub Actions'],
+          href: 'https://play.google.com/store/apps/dev?id=8163336353300983840',
+          linkLabel: 'Google Play',
+          icons: trueIcons,
+        },
+        {
+          name: 'Sinos ERP',
+          icon: 'sinos-erp.webp',
+          kind: 'ERP desde cero',
+          year: '2021',
+          summary: 'Finanzas, inventario y operación de Sinos Tecnologia, diseñado y construido de punta a punta.',
+          stack: ['Angular', 'ASP.NET Core', 'C#'],
+          href: 'https://www.sinosservice.com/',
+          linkLabel: 'Sitio de la empresa',
+        },
+        {
+          name: 'Lino',
+          icon: 'lino.webp',
+          kind: 'Hackathon, 1er lugar',
+          year: '2025',
+          summary: 'Líder de front-end: toda la interfaz en React y TypeScript en tiempo de hackathon, más la integración con el back-end.',
+          stack: ['React', 'TypeScript'],
+          href: 'https://github.com/PedroAugustoPereira/LikeNow',
+          linkLabel: 'GitHub',
+        },
+        {
+          name: 'Polymathech',
+          icon: 'polymathech.webp',
+          kind: 'Proyecto destacado, AGES',
+          year: '2024',
+          summary: 'Plataforma de estudio y orientación vocacional. Referente de front-end del equipo, a cargo de estándares y herramientas.',
+          stack: ['React', 'TypeScript', 'Figma'],
+          href: 'https://github.com/igormarcelmoreira/polymathech',
+          linkLabel: 'GitHub',
+        },
+        {
+          name: 'CP-Planta',
+          icon: 'cp-planta.webp',
+          kind: 'Arquitectura de datos',
+          year: '2024',
+          summary: 'Front-end en React y el modelo de datos y contratos de API detrás de él.',
+          stack: ['React', 'API design'],
+          href: 'https://tools.ages.pucrs.br/cp-planta',
+          linkLabel: 'GitLab',
+        },
+      ],
+    },
+    numbers: [
+      { value: 6, suffix: '+', label: 'años construyendo software en producción' },
+      { value: 6, suffix: '', label: 'apps publicadas en Android e iOS' },
+      { value: 2, suffix: '', label: 'premios: hackathon y AGES' },
+      { value: 3, suffix: '', label: 'países donde trabajé y estudié' },
+    ],
+    about: {
+      title: 'Sobre mí',
+      body: [
+        'Soy Igor, ingeniero full-stack de Porto Alegre. Fui el referente técnico de equipos móviles y web, armé los pipelines que publican sus versiones y migré seis apps en producción a un nuevo framework sin sacarlas del aire.',
+        'Terminé un intercambio en Hankuk University of Foreign Studies, en Seúl, en 2026, y estoy terminando Ingeniería de Software en la PUCRS.',
+      ],
+      jobs: [
+        {
+          period: '2022–2025',
+          role: 'Desarrollador full-stack senior y referente técnico',
+          company: 'TRUE — Tecnologia para a vida',
+          body: 'Arquitectura y revisiones entre equipos, CI/CD para Android e iOS, distribución con Intune MDM, Play Integrity y la migración de Xamarin a .NET MAUI.',
+        },
+        {
+          period: '2020–2022',
+          role: 'Desarrollador full-stack',
+          company: 'Interanet IT',
+          body: 'Web, back-end y móvil para Banrisul, Sulgás, Marista, Sinos Tecnologia y Aucon.',
+        },
+      ],
+      eduTitle: 'Formación',
+      edu: [
+        { period: '2026', title: 'Intercambio, Ingeniería de Software', school: 'HUFS, Seúl' },
+        { period: '2023–hoy', title: 'Licenciatura en Ingeniería de Software', school: 'PUCRS, Porto Alegre' },
+        { period: '2020–2022', title: 'Ingeniería de Control y Automatización', school: 'UERGS' },
+      ],
+      langs: 'Portugués (nativo), inglés (avanzado), japonés (principiante)',
+    },
+    stack,
+    contact: {
+      title: 'Construyamos algo',
+      body: 'Cuéntame qué necesitas poner en marcha. Suelo responder en menos de un día.',
+      email: 'igor2mxavier@gmail.com',
+      whatsapp: 'WhatsApp',
+      rights: '© 2026 Igor Marcel',
+      built: 'Hecho con Astro y GSAP',
+      top: 'Volver arriba',
     },
   },
 };

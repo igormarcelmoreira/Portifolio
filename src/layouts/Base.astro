@@ -4,8 +4,13 @@ import type { Content } from '../i18n/content';
 
 interface Props { t: Content }
 const { t } = Astro.props;
-const other = t.lang === 'en' ? { href: '/pt/', label: 'PT', name: 'Português' } : { href: '/', label: 'EN', name: 'English' };
-const canonical = new URL(t.lang === 'en' ? '/' : '/pt/', Astro.site);
+const langs = [
+  { code: 'en', path: '/', hreflang: 'en', label: 'EN', name: 'English' },
+  { code: 'pt', path: '/pt/', hreflang: 'pt-BR', label: 'PT', name: 'Português' },
+  { code: 'es', path: '/es/', hreflang: 'es', label: 'ES', name: 'Español' },
+];
+const current = langs.find((l) => l.code === t.lang)!;
+const canonical = new URL(current.path, Astro.site);
 ---
 <!doctype html>
 <html lang={t.htmlLang}>
@@ -16,8 +21,8 @@ const canonical = new URL(t.lang === 'en' ? '/' : '/pt/', Astro.site);
   <meta name="description" content={t.meta.description} />
   <meta name="theme-color" content="#8b0e0e" />
   <link rel="canonical" href={canonical} />
-  <link rel="alternate" hreflang="en" href={new URL('/', Astro.site)} />
-  <link rel="alternate" hreflang="pt-BR" href={new URL('/pt/', Astro.site)} />
+  {langs.map((l) => <link rel="alternate" hreflang={l.hreflang} href={new URL(l.path, Astro.site)} />)}
+  <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
   <meta property="og:title" content={t.meta.title} />
   <meta property="og:description" content={t.meta.description} />
   <meta property="og:url" content={canonical} />
@@ -29,12 +34,17 @@ const canonical = new URL(t.lang === 'en' ? '/' : '/pt/', Astro.site);
   <script is:inline define:vars={{ lang: t.lang }}>
     (function () {
       var d = document.documentElement;
-      // first visit on the English page from a Portuguese browser → /pt/
+      // first visit to / with no saved choice: follow the browser's preferred languages
+      // (first of en / pt / es in the user's list wins)
       try {
         var saved = localStorage.getItem('portfolio-lang');
-        if (lang === 'en' && !saved && (navigator.language || '').toLowerCase().indexOf('pt') === 0) {
-          location.replace('/pt/' + location.hash);
-          return;
+        if (lang === 'en' && !saved) {
+          var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+          for (var i = 0; i < prefs.length; i++) {
+            var code = String(prefs[i]).toLowerCase().slice(0, 2);
+            if (code === 'en') break;
+            if (code === 'pt' || code === 'es') { location.replace('/' + code + '/' + location.hash); return; }
+          }
         }
       } catch (e) {}
       d.classList.add('js');
@@ -59,7 +69,13 @@ const canonical = new URL(t.lang === 'en' ? '/' : '/pt/', Astro.site);
       <a class="u-link" href="#work" data-scroll>{t.nav.work}</a>
       <a class="u-link" href="#about" data-scroll>{t.nav.about}</a>
       <a class="u-link" href="#contact" data-scroll>{t.nav.contact}</a>
-      <a class="nav__lang" href={other.href} hreflang={other.label === 'PT' ? 'pt-BR' : 'en'} data-lang={other.label.toLowerCase()} aria-label={other.name}>{other.label}</a>
+      <span class="nav__langs">
+        {langs.map((l) =>
+          l.code === t.lang
+            ? <span class="nav__lang is-current" aria-current="page" title={l.name}>{l.label}</span>
+            : <a class="nav__lang" href={l.path} hreflang={l.hreflang} lang={l.hreflang} data-lang={l.code} aria-label={l.name}>{l.label}</a>
+        )}
+      </span>
     </nav>
   </header>
 
@@ -107,7 +123,17 @@ const canonical = new URL(t.lang === 'en' ? '/' : '/pt/', Astro.site);
   .nav__clock { font-size: 0.9rem; display: flex; gap: 0.6rem; font-variant-numeric: tabular-nums; }
   .nav__clock span { opacity: 0.6; }
   .nav__links { justify-self: end; display: flex; gap: 1.6rem; font-size: 0.95rem; align-items: center; }
-  .nav__lang { border: 1px solid currentColor; border-radius: 999px; padding: 0.15rem 0.7rem; font-size: 0.8rem; font-weight: 600; }
+  .nav__langs {
+    display: inline-flex;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 2px;
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .nav__lang { padding: 0.12rem 0.55rem; border-radius: 999px; opacity: 0.6; transition: opacity 0.3s; }
+  a.nav__lang:hover { opacity: 1; }
+  .nav__lang.is-current { background: var(--bone); color: var(--ink); opacity: 1; }
   @media (max-width: 860px) {
     .nav { grid-template-columns: 1fr auto; }
     .nav__clock { display: none; }

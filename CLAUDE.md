@@ -41,10 +41,12 @@ zine/                   — printable zine, NOT part of the site build (see chan
 ```
 
 ## Internationalization (i18n)
-- Two static routes: `/` (en) and `/pt/` (pt-BR), same components, copy from `src/i18n/content.ts`.
-- Inline script in `Base.astro`: a first visit to `/` from a `pt*` browser redirects to `/pt/`,
-  unless `localStorage['portfolio-lang']` is set. The EN/PT pill in the nav saves the choice.
-- Tech/tool names stay untranslated.
+- Three static routes: `/` (en), `/pt/` (pt-BR), `/es/` (es) — same components, copy from
+  `src/i18n/content.ts` (`content.en` / `.pt` / `.es`). Language list lives in `langs` in `Base.astro`.
+- Inline script in `Base.astro`: a visit to `/` with no `localStorage['portfolio-lang']` walks
+  `navigator.languages` in order; the first of en/pt/es wins (pt → `/pt/`, es → `/es/`, en stays).
+  Only `/` redirects. The EN/PT/ES switch in the nav saves the choice.
+- Tech/tool names stay untranslated. `about.langs` lists the languages Igor speaks (not the site's).
 
 ## Design System
 - Darker red + black (v3, 2026-09-28). Tokens in `src/styles/global.css`:
