@@ -327,27 +327,51 @@ function workRows() {
     });
   });
 
-  // touch / narrow: no hover, so the row crossing the middle of the screen is the "hovered" one
+  // touch / narrow: no hover, so the row crossing the middle of the screen is the "hovered" one.
+  // Its description unfolds as it arrives. Rows are picked from LIVE positions (they change
+  // height), and a row that opened stays open: collapsing rows above the reading line would
+  // pull the page up under the thumb.
   gsap.matchMedia().add('(hover: none), (max-width: 820px)', () => {
-    const triggers = rows.map((row) =>
-      ScrollTrigger.create({
-        trigger: row,
-        start: 'top 58%',
-        end: 'bottom 58%',
-        toggleClass: { targets: row, className: 'is-active' },
-        onToggle: (self) => {
-          if (!self.isActive) return;
-          const icons = $$('.row__icons img', row);
-          if (icons.length)
-            gsap.fromTo(
-              icons,
-              { scale: 0, rotation: -25 },
-              { scale: 1, rotation: 0, duration: 0.7, stagger: 0.07, ease: 'back.out(2.2)', delay: 0.15 },
-            );
-        },
-      }),
-    );
-    return () => triggers.forEach((t) => t.kill());
+    let active: HTMLElement | null = null;
+    let refreshPending = false;
+
+    const pick = () => {
+      const line = window.innerHeight * 0.58;
+      const hit =
+        rows.find((r) => {
+          const b = r.getBoundingClientRect();
+          return b.top <= line && b.bottom > line;
+        }) ?? null;
+      if (hit === active) return;
+      active?.classList.remove('is-active');
+      active = hit;
+      if (!hit) return;
+      hit.classList.add('is-active');
+      if (hit.classList.contains('is-open')) return;
+      hit.classList.add('is-open');
+      refreshPending = true; // the page just got taller: re-measure later triggers once scrolling stops
+      const icons = $$('.row__icons img', hit);
+      if (icons.length)
+        gsap.fromTo(
+          icons,
+          { scale: 0, rotation: -25 },
+          { scale: 1, rotation: 0, duration: 0.7, stagger: 0.07, ease: 'back.out(2.2)', delay: 0.25 },
+        );
+    };
+
+    const onScrollEnd = () => {
+      if (!refreshPending) return;
+      refreshPending = false;
+      ScrollTrigger.refresh();
+    };
+    const st = ScrollTrigger.create({ trigger: '[data-work-list]', start: 'top bottom', end: 'bottom top', onUpdate: pick });
+    ScrollTrigger.addEventListener('scrollEnd', onScrollEnd);
+
+    return () => {
+      st.kill();
+      ScrollTrigger.removeEventListener('scrollEnd', onScrollEnd);
+      rows.forEach((r) => r.classList.remove('is-active', 'is-open'));
+    };
   });
 }
 

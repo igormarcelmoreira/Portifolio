@@ -10,6 +10,7 @@ export interface Project {
   linkLabel?: string;
   icons?: boolean;
   icon?: string;
+  hideKind?: boolean;
 }
 
 export interface Content {
@@ -106,6 +107,7 @@ export const content: Record<Lang, Content> = {
         {
           name: 'Mobile app suite',
           kind: '6 apps in production',
+          hideKind: true,
           year: '2022–2025',
           summary: 'CHAMAR 192, SAPH Móvel, TRUE PCR, TRUE Checklist, SAPH Gestão and Unimed POA SOS, taken from Xamarin to .NET MAUI with CI/CD on Android and iOS.',
           stack: ['.NET MAUI', 'C#', 'GitHub Actions'],
