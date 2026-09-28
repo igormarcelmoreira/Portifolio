@@ -135,6 +135,15 @@ async function build(pre: HTMLElement, text: string, reduce: boolean) {
     },
     { passive: true },
   );
+  // touch: once the finger lifts (or the touch turns into a page scroll), ease back to rest
+  const release = (e: PointerEvent) => {
+    if (e.pointerType === 'mouse') return;
+    targetYaw = 0;
+    targetPitch = 0;
+    lastMove = performance.now();
+  };
+  window.addEventListener('pointerup', release, { passive: true });
+  window.addEventListener('pointercancel', release, { passive: true });
 
   const resize = () => {
     const w = canvas.clientWidth, h = canvas.clientHeight;
