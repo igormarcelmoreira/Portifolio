@@ -22,9 +22,10 @@ QR-linking to `card/`.
 ## File Structure
 ```
 astro.config.mjs        — site: https://igormarcel.is-a.dev
-src/i18n/content.ts     — ALL copy, typed, `content.en` / `content.pt`. Edit text here.
-src/pages/index.astro   — English (/)      ─┐ both render components/Home.astro
-src/pages/pt/index.astro— Portuguese (/pt/) ─┘
+src/i18n/content.ts     — ALL copy, typed, `content.en` / `.pt` / `.es`. Edit text here.
+src/pages/index.astro   — English (/)      ─┐
+src/pages/pt/index.astro— Portuguese (/pt/) ├ all render components/Home.astro
+src/pages/es/index.astro— Spanish (/es/)    ─┘
 src/layouts/Base.astro  — <head>, loader, fixed nav, cursor, #smooth-wrapper/#smooth-content
 src/components/         — Hero, Manifesto, Services, Work, Numbers, About, Stack, Contact
 src/scripts/motion.ts   — every GSAP animation + clock + language memory + GitHub latest repo
@@ -36,6 +37,13 @@ public/                 — copied as-is to the site root:
                           lino, polymathech, cp-planta). Originals live in gitignored _raw/icons/.
   card/                 — /card/ business card (plain HTML/CSS, untouched by Astro). QR codes
                           printed on the zine point here: never move or rename this route.
+  og/og-{en,pt,es}.jpg  — 1200x630 link-preview art (WhatsApp, Discord, LinkedIn, X…)
+og-src/                 — NOT deployed. og.html is the preview template (?lang=en|pt|es);
+                          portrait.png is the site's 3D portrait canvas captured at rest.
+                          To regenerate: serve the repo root, open og.html?lang=X at a 1200x630
+                          viewport and screenshot it to public/og/og-X.jpg (JPEG ~85). Recapture
+                          portrait.png (reduced-motion context, screenshot .hero__canvas) if
+                          ascii-art.txt changes.
 zine/                   — printable zine, NOT part of the site build (see changelog). Its
                           index.html fetches ../public/ascii-art.txt when served from the repo root.
 ```

@@ -1,0 +1,48 @@
+<!doctype html>
+<!-- Link-preview art (Open Graph). Rendered to public/og/og-{lang}.jpg at 1200x630.
+     Open with ?lang=en|pt|es from a server rooted at the repo, then screenshot 1200x630. -->
+<html>
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@500;600&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body { background: #8b0e0e; color: #f1ece6; font-family: 'Instrument Sans', sans-serif; position: relative; }
+  /* portrait.png = the site's 3D portrait canvas captured at rest (see CLAUDE.md) */
+  .portrait { position: absolute; right: 40px; bottom: 70px; height: 560px; width: auto; }
+  .top { position: absolute; left: 56px; top: 52px; display: grid; gap: 14px; }
+  .role { font-size: 34px; font-weight: 600; letter-spacing: -0.01em; }
+  .site { font-size: 22px; opacity: 0.7; }
+  .status { display: flex; align-items: center; gap: 12px; font-size: 22px; margin-top: 16px; }
+  .status i { width: 12px; height: 12px; border-radius: 50%; background: #f1ece6; }
+  .name {
+    position: absolute; left: 30px; right: 0; bottom: -26px;
+    font-family: 'Archivo', sans-serif; font-stretch: 62%; font-weight: 800;
+    font-size: 214px; line-height: 0.86; text-transform: uppercase; white-space: nowrap;
+  }
+</style>
+</head>
+<body>
+  <img class="portrait" id="art" src="portrait.png" alt="" />
+  <div class="top">
+    <p class="role" id="role"></p>
+    <p class="site">igormarcel.is-a.dev</p>
+    <p class="status"><i></i><span id="status"></span></p>
+  </div>
+  <p class="name">Igor Marcel</p>
+  <script>
+    const copy = {
+      en: ['Software Engineer', 'Web, mobile & AI that ships'],
+      pt: ['Engenheiro de Software', 'Web, mobile e IA que vão pra produção'],
+      es: ['Ingeniero de Software', 'Web, móvil e IA que llegan a producción'],
+    };
+    const lang = new URLSearchParams(location.search).get('lang') || 'en';
+    document.getElementById('role').textContent = copy[lang][0];
+    document.getElementById('status').textContent = copy[lang][1];
+    const img = document.getElementById('art');
+    const done = () => (document.body.dataset.ready = '1');
+    img.complete ? done() : img.addEventListener('load', done);
+  </script>
+</body>
+</html>
