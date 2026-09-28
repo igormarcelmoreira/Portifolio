@@ -1,0 +1,20 @@
+---
+import type { Content } from '../i18n/content';
+interface Props { t: Content }
+const { t } = Astro.props;
+---
+<section class="manifesto band band--ink wrap">
+  <p class="manifesto__text" data-scrub-words>{t.manifesto}</p>
+</section>
+
+<style>
+  .manifesto__text {
+    font-family: var(--display);
+    font-stretch: 75%;
+    font-weight: 600;
+    font-size: clamp(2rem, 5.2vw, 5.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+</style>

@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from './Hero.astro';
+import Manifesto from './Manifesto.astro';
+import Services from './Services.astro';
+import Work from './Work.astro';
+import Numbers from './Numbers.astro';
+import About from './About.astro';
+import Stack from './Stack.astro';
+import Contact from './Contact.astro';
+import type { Content } from '../i18n/content';
+
+interface Props { t: Content }
+const { t } = Astro.props;
+---
+<Base t={t}>
+  <main>
+    <Hero t={t} />
+    <Manifesto t={t} />
+    <Services t={t} />
+    <Work t={t} />
+    <Numbers t={t} />
+    <About t={t} />
+    <Stack t={t} />
+    <Contact t={t} />
+  </main>
+</Base>

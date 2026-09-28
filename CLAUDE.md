@@ -11,70 +11,86 @@ QR-linking to `card/`.
 - **GitHub**: https://github.com/igormarcelmoreira/Portifolio
 - **Branch strategy**: main
 
-## Project Structure
-_To be updated as the project grows._
-
 ## Tech Stack
-- Pure HTML / CSS / Vanilla JS (no build tools — static site)
-- Google Fonts: Archivo (variable width, headings) + Instrument Sans (body) + JetBrains Mono (ASCII portrait only)
-- One runtime dependency: Three.js r170, loaded from jsDelivr through an import map in `index.html` (used by `js/apps3d.js` and `js/ascii3d.js`; both fall back gracefully if WebGL/CDN is unavailable)
+- **Astro 7** static site (`npm run dev` / `npm run build` → `dist/`), TypeScript, no UI framework.
+- **GSAP 3.15** from npm (all plugins are free now): ScrollTrigger, ScrollSmoother, SplitText.
+- **Three.js** from npm, dynamically imported only for the hero portrait (separate ~720 KB chunk).
+- Google Fonts: Archivo (variable width, display) + Instrument Sans (body) + JetBrains Mono 700 (portrait glyphs only).
+- Deploy: `.github/workflows/deploy.yml` (withastro/action → actions/deploy-pages) on push to `main`.
+  GitHub Pages must be set to **build type "GitHub Actions"** (not "deploy from branch").
 
 ## File Structure
 ```
-index.html        — single-page portfolio
-css/style.css     — all styles (dark theme, responsive)
-js/main.js        — scroll effects, typewriter, tilt, mobile nav
-js/i18n.js        — EN/PT-BR translation dictionary + language switching
-js/apps3d.js      — interactive 3D app-icon showcase (Three.js ES module)
-js/ascii3d.js     — turns ascii-art.txt into a 3D relief portrait (Three.js ES module)
-assets/           — crosshair.svg (hero registration marks)
-icons/            — TRUE app icons used by the 3D showcase and the project card
-ascii-art.txt     — portrait fetched into the hero
-favicon.svg, CNAME
-card/             — standalone digital business card (own HTML/CSS, no shared nav/JS)
-  index.html      — /card/ route: photo, name, quick actions, Save Contact, link list, bio
-  card.css        — its own compact copy of the brand tokens (red/ink/panel)
-  igor.jpg        — profile photo, resized for the page avatar
-  igor-marcel.vcf — vCard 3.0 (incl. embedded photo) served for "Salvar Contato"
-zine/             — printable one-page zine, generated (not a served route)
-  index.html      — 8-panel A4-landscape layout; fetches ../ascii-art.txt for the back-cover art
-  qrcode.png      — QR to card/, printed on the front cover
-  igor-marcel-zine.pdf — the print-ready output (regenerate via Playwright's page.pdf(), see below)
-CLAUDE.md         — this file
+astro.config.mjs        — site: https://igormarcel.is-a.dev
+src/i18n/content.ts     — ALL copy, typed, `content.en` / `content.pt`. Edit text here.
+src/pages/index.astro   — English (/)      ─┐ both render components/Home.astro
+src/pages/pt/index.astro— Portuguese (/pt/) ─┘
+src/layouts/Base.astro  — <head>, loader, fixed nav, cursor, #smooth-wrapper/#smooth-content
+src/components/         — Hero, Manifesto, Services, Work, Numbers, About, Stack, Contact
+src/scripts/motion.ts   — every GSAP animation + clock + language memory + GitHub latest repo
+src/scripts/portrait.ts — ascii-art.txt → instanced 3D glyph relief (Three.js)
+src/styles/global.css   — tokens, type helpers, pill button, motion baseline
+public/                 — copied as-is to the site root:
+  CNAME, favicon.svg, ascii-art.txt, icons/ (TRUE app icons), assets/crosshair.svg
+  card/                 — /card/ business card (plain HTML/CSS, untouched by Astro). QR codes
+                          printed on the zine point here: never move or rename this route.
+zine/                   — printable zine, NOT part of the site build (see changelog). Its
+                          index.html fetches ../public/ascii-art.txt when served from the repo root.
 ```
 
 ## Internationalization (i18n)
-- Two languages: English (default) and Brazilian Portuguese.
-- `js/i18n.js` holds a flat `translations` key → `{en, pt}` dictionary; translatable elements are marked `data-i18n="key"` in `index.html`.
-- Language resolution: `localStorage['portfolio-lang']` override, else `navigator.language` (starts with `pt` → Portuguese, else English).
-- Manual override: EN/PT toggle button in the navbar (`#lang-toggle`), persists choice to `localStorage` and updates `<html lang>`.
-- Hero typewriter titles live in `heroTitles` (same file) and restart on a `langchange` custom event, consumed by `js/main.js`.
-- Tech/tool names (React, Angular, C#, etc.) are intentionally left untranslated in both languages.
+- Two static routes: `/` (en) and `/pt/` (pt-BR), same components, copy from `src/i18n/content.ts`.
+- Inline script in `Base.astro`: a first visit to `/` from a `pt*` browser redirects to `/pt/`,
+  unless `localStorage['portfolio-lang']` is set. The EN/PT pill in the nav saves the choice.
+- Tech/tool names stay untranslated.
 
 ## Design System
-- Red field, black detail (redesign 2026-09). Tokens live in `:root` of `css/style.css`.
-- `--red #D8231A` page, `--red-deep #A8150E` alternate bands (Experience, Skills) and offset shadows, `--ink #000` nav/buttons/contact, `--panel #0B0B0B` cards, `--hot #FF4438` red text on black only.
-- White text on red (5:1). Black on red is only for large headings (4.2:1). Never use `--hot` on the red field.
-- Type: Archivo at `font-stretch: 62–75%`, weight 700–800 for headings/name; Instrument Sans body. No numbered section labels, no uppercase eyebrows.
-- Cards: black, 6px radius; hover = translate(-4px,-4px) + hard white offset shadow (no glows or blurs).
-- Motion: one entrance only (the ASCII portrait "prints" in via clip-path). Scroll-reveal classes (`.reveal`) are still in the markup/JS but have no CSS effect. `prefers-reduced-motion` is respected.
-- Hero portrait = black ink straight on the red field (no card). `ascii-art.txt` must be dark-subject-on-space: spaces are the background, dense glyphs (`@`) are the subject. `js/ascii3d.js` renders it as instanced 3D glyphs (depth = blurred character density, tilts toward the pointer, idle sway after 3s); the flat `<pre id="hero-ascii">` is the no-WebGL fallback and is hidden via `.is-3d`. Any glyph ramp in `RAMP` works if `ascii-art.txt` changes.
-- Fully responsive (breakpoints at 900px, 768px, 480px)
+- Darker red + black (v3, 2026-09-28). Tokens in `src/styles/global.css`:
+  `--blood #8b0e0e` page, `--blood-deep #5e0907` bands, `--ink #000`, `--bone #f1ece6` text,
+  `--flare #ff3b2f` tiny accents on black only.
+- Type: Archivo condensed (`font-stretch: 62%`, 800, uppercase) for display; Instrument Sans body.
+  No numbered section eyebrows; project rows are numbered because they are an ordered list.
+- Section rhythm: hero red → manifesto black → services red → work black → numbers deep red →
+  about red → stack marquee black → contact black.
+
+## Motion (src/scripts/motion.ts)
+- ScrollSmoother wraps the page (`smoothTouch: 0.1`). Anything `position: fixed` must live OUTSIDE
+  `#smooth-content` (it is transformed): nav, cursor, loader are in Base; the work preview is
+  moved to `<body>` at runtime.
+- Loader counter + curtain only on the first visit per session (`sessionStorage['intro-seen']`).
+- SplitText: hero name chars, `[data-split-lines]` headings, `[data-split-chars]` contact title,
+  `[data-scrub-words]` manifesto (scrubbed opacity), project names in the work rows.
+- Work rows: desktop = hover fill + floating tilted preview + cursor "Open"; touch/narrow = the
+  row crossing 58% of the screen gets `.is-active` (fill + app-icon pop). Do NOT animate row
+  heights on touch — it desyncs ScrollTrigger and shifts content under the thumb.
+- Portrait is built ~1.8s after boot (first visit) in chunks, downsampled 2× under 900px wide.
+- Visibility: `[data-reveal]` etc. are hidden only under `html.js:not(.reduce)`. A 6s safety
+  timer in `<head>` adds `.reduce` if motion never boots; reduced-motion users get a static page.
 
 ## Sections
-1. Hero — name, typewriter title, CTA, socials
-2. About — summary, 4 stat cards
-3. Experience — timeline (TRUE 2022–2025, Interanet 2020–2022)
-4. Projects — interactive 3D showcase of the 6 TRUE app icons (drag to orbit, hover for name) + 7 cards (CAIRHOS, Mobile Suite, Lino, Polymathech, CP-Planta, Moving The Cities, Sinos ERP)
-5. Skills — grouped pills (Languages, Frameworks, Mobile, CI/CD, Cloud, Tools)
-6. Education — 3 entries + language badges
-7. Contact — email CTA + social links
+1. Hero — giant name, 3D ASCII portrait, one-line pitch, availability, CTA
+2. Manifesto — scrubbed paragraph
+3. Services — web platforms, mobile apps, AI & automation, technical leadership
+4. Selected work — 6 project rows with links
+5. Numbers — 4 counters
+6. About — bio, jobs (TRUE, Interanet), education, languages
+7. Stack — velocity-reactive marquee
+8. Contact — title, email pill (magnetic), links, footer with local clock
 
 ## Development Conventions
 - Commit messages should be clear and descriptive.
 - Update this file with every major change.
 
 ## Changelog
+
+### 2026-09-28 — v3.0 Astro + GSAP rebuild (branch `redesign-astro`)
+- Rebuilt the site in Astro with GSAP (ScrollSmoother, ScrollTrigger, SplitText), aimed at selling
+  engineering work: new Services section before the projects, projects as hover-preview rows
+  (reference: haoqi.design), counters, marquee, contact with magnetic email.
+- Darker red (`#8b0e0e`). Kept only the 3D ASCII portrait; the 3D app-icon tiles were dropped
+  (the icons now appear in the work preview / active mobile row).
+- Old `index.html`, `css/`, `js/` removed; static assets moved to `public/` (card/ keeps its URL).
+- Deploy switched from "Pages from branch root" to the GitHub Actions workflow.
 
 ### 2026-09-22 — Printable networking zine (`zine/`)
 - One-page, 8-panel zine (A4 landscape, 297×210mm) following the classic single-sheet

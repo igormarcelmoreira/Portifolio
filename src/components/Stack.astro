@@ -1,0 +1,27 @@
+---
+import type { Content } from '../i18n/content';
+interface Props { t: Content }
+const { t } = Astro.props;
+---
+<section class="stack" aria-label="Stack">
+  <div class="stack__track" data-marquee>
+    {[0, 1].map((copy) => (
+      <p class="stack__row display" aria-hidden={copy === 1 ? 'true' : undefined}>
+        {t.stack.map((s) => <span>{s}<i aria-hidden="true">/</i></span>)}
+      </p>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stack {
+    background: var(--ink);
+    color: var(--bone);
+    overflow: hidden;
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .stack__track { display: flex; width: max-content; will-change: transform; }
+  .stack__row { display: flex; font-size: clamp(3rem, 8vw, 7.5rem); white-space: nowrap; }
+  .stack__row span { display: inline-flex; align-items: center; }
+  .stack__row i { font-style: normal; color: var(--blood); margin-inline: 0.35em; }
+</style>

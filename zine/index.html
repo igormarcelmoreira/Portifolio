@@ -234,7 +234,7 @@
   </div>
 
   <script>
-    fetch('../ascii-art.txt').then(r => r.text()).then(txt => {
+    fetch('../public/ascii-art.txt').then(r => r.text()).then(txt => {
       const lines = txt.replace(/\r/g, '').split('\n').filter(l => l.trim().length);
       document.getElementById('ascii-target').textContent = lines.join('\n');
     });

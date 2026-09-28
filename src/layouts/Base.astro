@@ -1,0 +1,128 @@
+---
+import '../styles/global.css';
+import type { Content } from '../i18n/content';
+
+interface Props { t: Content }
+const { t } = Astro.props;
+const other = t.lang === 'en' ? { href: '/pt/', label: 'PT', name: 'Português' } : { href: '/', label: 'EN', name: 'English' };
+const canonical = new URL(t.lang === 'en' ? '/' : '/pt/', Astro.site);
+---
+<!doctype html>
+<html lang={t.htmlLang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{t.meta.title}</title>
+  <meta name="description" content={t.meta.description} />
+  <meta name="theme-color" content="#8b0e0e" />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="en" href={new URL('/', Astro.site)} />
+  <link rel="alternate" hreflang="pt-BR" href={new URL('/pt/', Astro.site)} />
+  <meta property="og:title" content={t.meta.title} />
+  <meta property="og:description" content={t.meta.description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@700&display=swap" rel="stylesheet" />
+  <script is:inline define:vars={{ lang: t.lang }}>
+    (function () {
+      var d = document.documentElement;
+      // first visit on the English page from a Portuguese browser → /pt/
+      try {
+        var saved = localStorage.getItem('portfolio-lang');
+        if (lang === 'en' && !saved && (navigator.language || '').toLowerCase().indexOf('pt') === 0) {
+          location.replace('/pt/' + location.hash);
+          return;
+        }
+      } catch (e) {}
+      d.classList.add('js');
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('reduce');
+      try { if (sessionStorage.getItem('intro-seen')) d.classList.add('intro-seen'); } catch (e) {}
+      // if the motion script never boots, show the content anyway
+      setTimeout(function () { if (!d.classList.contains('motion-ready')) d.classList.add('reduce'); }, 6000);
+    })();
+  </script>
+</head>
+<body>
+  <div class="loader" aria-hidden="true">
+    <span class="loader__label">{t.loader}</span>
+    <span class="loader__count display">0</span>
+  </div>
+
+  <header class="nav">
+    <a class="nav__brand" href="#top" data-scroll>Igor Marcel</a>
+    <p class="nav__clock"><span>{t.nav.city}</span> <time class="clock" data-clock>--:--</time></p>
+    <nav class="nav__links" aria-label="Main">
+      <a class="u-link" href="#services" data-scroll>{t.nav.services}</a>
+      <a class="u-link" href="#work" data-scroll>{t.nav.work}</a>
+      <a class="u-link" href="#about" data-scroll>{t.nav.about}</a>
+      <a class="u-link" href="#contact" data-scroll>{t.nav.contact}</a>
+      <a class="nav__lang" href={other.href} hreflang={other.label === 'PT' ? 'pt-BR' : 'en'} data-lang={other.label.toLowerCase()} aria-label={other.name}>{other.label}</a>
+    </nav>
+  </header>
+
+  <div class="cursor" aria-hidden="true"><span class="cursor__label"></span></div>
+
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <slot />
+    </div>
+  </div>
+
+  <script>
+    import '../scripts/motion';
+  </script>
+</body>
+</html>
+
+<style is:global>
+  /* loader */
+  .loader {
+    position: fixed; inset: 0; z-index: 200;
+    background: var(--ink);
+    display: flex; align-items: flex-end; justify-content: space-between;
+    padding: var(--gutter);
+    pointer-events: none;
+  }
+  .loader__label { font-size: 0.95rem; color: var(--bone-dim); }
+  .loader__count { font-size: clamp(7rem, 26vw, 24rem); line-height: 0.78; color: var(--bone); font-variant-numeric: tabular-nums; }
+  html:not(.js) .loader, .reduce .loader, .intro-seen .loader { display: none; }
+
+  /* nav */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center;
+    padding: 1.1rem var(--gutter);
+    color: var(--bone);
+    transition: transform 0.6s var(--ease-out), background-color 0.4s;
+  }
+  .nav.is-solid, .reduce .nav, html:not(.js) .nav { background: var(--ink); }
+  .nav.is-hidden { transform: translateY(-100%); }
+  .nav__brand {
+    font-family: var(--display); font-stretch: 62%; font-weight: 800;
+    font-size: 1.45rem; text-transform: uppercase; letter-spacing: 0.01em; justify-self: start;
+  }
+  .nav__clock { font-size: 0.9rem; display: flex; gap: 0.6rem; font-variant-numeric: tabular-nums; }
+  .nav__clock span { opacity: 0.6; }
+  .nav__links { justify-self: end; display: flex; gap: 1.6rem; font-size: 0.95rem; align-items: center; }
+  .nav__lang { border: 1px solid currentColor; border-radius: 999px; padding: 0.15rem 0.7rem; font-size: 0.8rem; font-weight: 600; }
+  @media (max-width: 860px) {
+    .nav { grid-template-columns: 1fr auto; }
+    .nav__clock { display: none; }
+    .nav__links a:not(.nav__lang):not([href="#contact"]) { display: none; }
+  }
+
+  /* cursor: fine pointers only */
+  .cursor {
+    position: fixed; top: 0; left: 0; z-index: 150; pointer-events: none;
+    width: 88px; height: 88px; margin: -44px 0 0 -44px; border-radius: 50%;
+    background: var(--bone);
+    display: none; align-items: center; justify-content: center;
+    transform: scale(0.16);
+    opacity: 0;
+  }
+  .cursor__label { font-size: 0.8rem; font-weight: 700; color: var(--ink); white-space: nowrap; opacity: 0; }
+  @media (hover: hover) and (pointer: fine) { .js:not(.reduce) .cursor { display: flex; } }
+</style>

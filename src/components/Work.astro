@@ -1,0 +1,172 @@
+---
+import type { Content } from '../i18n/content';
+interface Props { t: Content }
+const { t } = Astro.props;
+const icons = [
+  ['chamar-192.webp', 'CHAMAR 192'],
+  ['true-saph-movel.png', 'SAPH Móvel'],
+  ['true-pcr.webp', 'TRUE PCR'],
+  ['true-checklist.webp', 'TRUE Checklist'],
+  ['true-saph-gestao.webp', 'SAPH Gestão'],
+  ['sos-unimed-poa.webp', 'Unimed POA SOS'],
+];
+---
+<section class="work band band--ink wrap" id="work">
+  <div class="work__head">
+    <h2 class="h-section" data-split-lines>{t.work.title}</h2>
+    <p class="lead" data-reveal>{t.work.lead}</p>
+  </div>
+
+  <ol class="work__list" data-work-list>
+    {t.work.projects.map((p, i) => (
+      <li class="row" data-row={i}>
+        <a class="row__link" href={p.href} target="_blank" rel="noopener" data-cursor={t.work.open}>
+          <span class="row__index">{String(i + 1).padStart(2, '0')}</span>
+          <span class="row__name">{p.name}</span>
+          <span class="row__kind">{p.kind}</span>
+          <span class="row__year">{p.year}</span>
+          <span class="row__more">
+            <span class="row__more-inner">
+              <span class="row__summary">{p.summary}</span>
+              <span class="row__stack">{p.stack.join(', ')}</span>
+              {p.icons && (
+                <span class="row__icons">
+                  {icons.map(([src, alt]) => <img src={`/icons/${src}`} alt={alt} loading="lazy" width="52" height="52" />)}
+                </span>
+              )}
+              {p.linkLabel && <span class="row__via">{p.linkLabel} ↗</span>}
+            </span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ol>
+
+  <p class="work__gh" data-gh hidden>
+    {t.work.github}: <a class="u-link" data-gh-link href="https://github.com/igormarcelmoreira" target="_blank" rel="noopener"></a>
+  </p>
+
+  <div class="preview" aria-hidden="true" data-preview>
+    <div class="preview__track" data-preview-track>
+      {t.work.projects.map((p) => (
+        <div class="preview__slide">
+          {p.icons ? (
+            <div class="preview__icons">
+              {icons.map(([src, alt]) => <img src={`/icons/${src}`} alt={alt} loading="lazy" width="88" height="88" />)}
+            </div>
+          ) : (
+            <p class="preview__word display">{p.name}</p>
+          )}
+          <p class="preview__kind">{p.kind}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .work { position: relative; }
+  .work__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 2rem 4rem;
+    margin-bottom: clamp(3rem, 7vw, 6rem);
+  }
+  .work__list { list-style: none; border-top: 1px solid var(--line); }
+  .row { border-bottom: 1px solid var(--line); position: relative; }
+  .row::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--blood);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.55s var(--ease-out);
+  }
+  .row:hover::before { transform: scaleY(1); transform-origin: top; }
+  .row__link {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1.3fr) minmax(0, 1fr) 7rem;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    padding: clamp(1.4rem, 2.6vw, 2.2rem) 0.5rem;
+  }
+  .row__index { font-size: 0.85rem; color: var(--bone-dim); font-variant-numeric: tabular-nums; }
+  .row__name {
+    font-family: var(--display);
+    font-stretch: 62%;
+    font-weight: 800;
+    font-size: clamp(2.2rem, 5vw, 4.6rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  .row__kind { font-size: 1.05rem; }
+  .row__year { font-size: 0.95rem; color: var(--bone-dim); text-align: right; font-variant-numeric: tabular-nums; }
+  .row__more {
+    grid-column: 2 / -1;
+    display: grid;
+    max-width: 60ch;
+    color: var(--bone-dim);
+    font-size: 1rem;
+  }
+  .row__more-inner { display: grid; gap: 0.35rem; min-height: 0; overflow: hidden; }
+  .row__via { color: var(--bone); }
+
+  /* desktop: summary folds open on hover */
+  @media (hover: hover) and (min-width: 821px) {
+    .row__more {
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.55s var(--ease-out), opacity 0.4s;
+    }
+    .row:hover .row__more, .row__link:focus-visible .row__more { grid-template-rows: 1fr; opacity: 1; }
+  }
+  @media (max-width: 820px) {
+    .work__head { grid-template-columns: 1fr; }
+    .row__link { grid-template-columns: 2.2rem 1fr auto; }
+    .row__kind { grid-column: 2 / -1; grid-row: 2; }
+    .row__year { grid-row: 1; grid-column: 3; }
+  }
+
+  .row__icons { display: none; }
+
+  /* touch / narrow: the row crossing the middle of the screen becomes active */
+  @media (hover: none), (max-width: 820px) {
+    .row__icons { display: grid; grid-template-columns: repeat(6, minmax(0, 52px)); gap: 0.5rem; margin-block: 0.6rem 0.2rem; }
+    .row__icons img { width: 100%; height: auto; aspect-ratio: 1; border-radius: 24%; object-fit: cover; background: var(--bone); }
+    /* opacity only: changing heights here would shift the rows under the thumb */
+    :global(.motion-ready) .row__more { opacity: 0.4; transition: opacity 0.5s; }
+    :global(.motion-ready) .row.is-active .row__more { opacity: 1; }
+    .row.is-active::before { transform: scaleY(1); transform-origin: top; }
+    .row__name { transition: transform 0.6s var(--ease-out); }
+    .row.is-active .row__name { transform: translateX(0.12em); }
+  }
+
+  .work__gh { margin-top: 2.5rem; font-size: 0.95rem; color: var(--bone-dim); }
+  .work__gh a { color: var(--bone); }
+
+  .preview {
+    position: fixed; top: 0; left: 0; z-index: 90;
+    width: 300px; height: 210px;
+    margin: -105px 0 0 -150px;
+    border-radius: 6px;
+    overflow: hidden;
+    pointer-events: none;
+    background: var(--blood-deep);
+    opacity: 0;
+    scale: 0.6;
+    display: none;
+  }
+  @media (hover: hover) and (pointer: fine) and (min-width: 821px) { .preview { display: block; } }
+  .preview__track { height: 100%; }
+  .preview__slide {
+    height: 100%;
+    display: flex; flex-direction: column; justify-content: space-between;
+    padding: 1.1rem 1.2rem;
+  }
+  .preview__word { font-size: 4.2rem; line-height: 0.85; word-break: break-word; }
+  .preview__kind { font-size: 0.85rem; color: var(--bone-dim); }
+  .preview__icons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+  .preview__icons img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 22%; background: var(--bone); }
+</style>

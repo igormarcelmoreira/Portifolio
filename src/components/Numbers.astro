@@ -1,0 +1,29 @@
+---
+import type { Content } from '../i18n/content';
+interface Props { t: Content }
+const { t } = Astro.props;
+---
+<section class="numbers band band--deep wrap">
+  <ul class="numbers__grid">
+    {t.numbers.map((n) => (
+      <li class="stat" data-reveal>
+        <span class="stat__value display"><span data-count={n.value}>{n.value}</span>{n.suffix}</span>
+        <span class="stat__label">{n.label}</span>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .numbers { padding-block: clamp(4rem, 9vw, 8rem); }
+  .numbers__grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+  }
+  .stat { display: grid; gap: 0.75rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+  .stat__value { font-size: clamp(5rem, 12vw, 11rem); font-variant-numeric: tabular-nums; }
+  .stat__label { font-size: 1rem; max-width: 20ch; color: var(--bone-dim); }
+  @media (max-width: 820px) { .numbers__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>

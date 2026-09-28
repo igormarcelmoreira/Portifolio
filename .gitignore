@@ -2,3 +2,8 @@
 Igor ProfPic.png
 Moreira Xavier_Igor Marcel.vcf
 /qrcode.png
+
+# Astro
+node_modules/
+dist/
+.astro/
