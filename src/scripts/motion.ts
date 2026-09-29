@@ -335,6 +335,19 @@ function workRows() {
     let active: HTMLElement | null = null;
     let refreshPending = false;
 
+    // one red block glides to the active row and tracks its height while it unfolds
+    const list = $('[data-work-list]')!;
+    const marker = $('[data-marker]')!;
+    const markerY = gsap.quickTo(marker, 'y', { duration: 0.6, ease: 'power3.out' });
+    const markerH = gsap.quickTo(marker, 'height', { duration: 0.6, ease: 'power3.out' });
+    const place = (row: HTMLElement, instant = false) => {
+      const y = list.offsetTop + row.offsetTop;
+      if (instant) gsap.set(marker, { y, height: row.offsetHeight });
+      else { markerY(y); markerH(row.offsetHeight); }
+    };
+    const resized = new ResizeObserver(() => { if (active) place(active); });
+    rows.forEach((r) => resized.observe(r));
+
     const pick = () => {
       const line = window.innerHeight * 0.58;
       const hit =
@@ -343,9 +356,15 @@ function workRows() {
           return b.top <= line && b.bottom > line;
         }) ?? null;
       if (hit === active) return;
+      const wasShown = !!active;
       active?.classList.remove('is-active');
       active = hit;
-      if (!hit) return;
+      if (!hit) {
+        gsap.to(marker, { autoAlpha: 0, duration: 0.35, overwrite: 'auto' });
+        return;
+      }
+      place(hit, !wasShown);
+      if (!wasShown) gsap.to(marker, { autoAlpha: 1, duration: 0.35, overwrite: 'auto' });
       hit.classList.add('is-active');
       if (hit.classList.contains('is-open')) return;
       hit.classList.add('is-open');
@@ -369,8 +388,10 @@ function workRows() {
 
     return () => {
       st.kill();
+      resized.disconnect();
       ScrollTrigger.removeEventListener('scrollEnd', onScrollEnd);
       rows.forEach((r) => r.classList.remove('is-active', 'is-open'));
+      gsap.set(marker, { clearProps: 'all' });
     };
   });
 }

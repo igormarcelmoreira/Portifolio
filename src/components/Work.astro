@@ -17,6 +17,8 @@ const icons = [
     <p class="lead" data-reveal>{t.work.lead}</p>
   </div>
 
+  <!-- touch: one red block glides between rows instead of each row filling on its own -->
+  <span class="work__marker" aria-hidden="true" data-marker></span>
   <ol class="work__list" data-work-list>
     {t.work.projects.map((p, i) => (
       <li class="row" data-row={i}>
@@ -81,7 +83,8 @@ const icons = [
     gap: 2rem 4rem;
     margin-bottom: clamp(3rem, 7vw, 6rem);
   }
-  .work__list { list-style: none; border-top: 1px solid var(--line); }
+  .work__list { list-style: none; border-top: 1px solid var(--line); position: relative; z-index: 1; }
+  .work__marker { display: none; }
   .row { border-bottom: 1px solid var(--line); position: relative; }
   .row::before {
     content: '';
@@ -151,7 +154,21 @@ const icons = [
     }
     :global(.motion-ready) .row.is-open .row__more { grid-template-rows: 1fr; opacity: 0.45; }
     :global(.motion-ready) .row.is-active .row__more { opacity: 1; }
-    .row.is-active::before { transform: scaleY(1); transform-origin: top; }
+    .row::before { display: none; }
+    .work__marker {
+      display: block;
+      position: absolute;
+      left: var(--gutter);
+      right: var(--gutter);
+      top: 0;
+      height: 0;
+      background: var(--blood);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 0;
+      will-change: transform, height;
+    }
     .row__name { transition: transform 0.6s var(--ease-out); }
     .row.is-active .row__name { transform: translateX(0.12em); }
   }
